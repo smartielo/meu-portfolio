@@ -29,7 +29,7 @@ O objetivo é apresentar meus projetos, experiências e evolução na área da t
 
 ```bash
 # Clone o repositório
-git clone https://github.com/SEU_USUARIO/meu-portfolio.git
+git clone https://github.com/smartielo/meu-portfolio.git
 
 # Entre na pasta
 cd meu-portfolio
@@ -39,3 +39,27 @@ npm install
 
 # Inicie o servidor de desenvolvimento
 npm run dev
+
+```
+---
+## 📌 Objetivos do projeto
+
+Mostrar minha evolução como desenvolvedor
+
+Apresentar meus projetos e habilidades técnicas
+
+Construir uma interface moderna, fluida e responsiva
+
+📸 Preview
+Em breve adicionarei capturas de tela e/ou o link do site hospedado.
+
+🧠 Aprendizados
+Este projeto está sendo desenvolvido com o objetivo de reforçar meus conhecimentos em tecnologias modernas do ecossistema React, além de praticar boas práticas de desenvolvimento, organização de código e versionamento com Git.
+
+📬 Contato
+Se quiser trocar uma ideia, pode me chamar!
+
+LinkedIn: http://linkedin.com/in/gabrielmartielo
+
+Email: gabrielmartielo3214@gmail.com / dev.gabrielmartielo@gmail.com
+---
