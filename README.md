@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfólio Profissional | Full Stack Developer
 
-## Getting Started
+Bem-vindo ao repositório do meu site portfólio pessoal.
+Este projeto foi desenvolvido com foco em **Performance**, **UX (Experiência do Usuário)** e **Design Fluido**, utilizando as tecnologias mais modernas do ecossistema React.
 
-First, run the development server:
+O objetivo é apresentar meus projetos, habilidades e trajetória profissional através de uma interface imersiva e interativa.
 
-```bash
+## 🚀 Tecnologias Utilizadas
+
+Este projeto utiliza uma stack moderna voltada para escalabilidade e performance:
+
+* **Core:** [Next.js 15](https://nextjs.org/) (App Router) & [React](https://react.dev/)
+* **Linguagem:** [TypeScript](https://www.typescriptlang.org/) (Segurança de tipos)
+* **Estilização:** [Tailwind CSS](https://tailwindcss.com/)
+* **Animações:** [Framer Motion](https://www.framer.com/motion/) (Transições complexas e micro-interações)
+* **UX & Scroll:** [@studio-freight/lenis](https://github.com/studio-freight/lenis) (Smooth Scrolling premium)
+* **Componentes UI:** [Swiper.js](https://swiperjs.com/) (Carrossel interativo) & [React Icons](https://react-icons.github.io/react-icons/)
+
+## ✨ Funcionalidades Principais
+
+* **Smooth Scrolling:** Navegação fluida e "amanteigada" usando Lenis.
+* **Animações Declarativas:** Elementos que reagem ao scroll (fade-in, slide-up) usando Framer Motion.
+* **Design Responsivo:** Layout totalmente adaptável para Mobile, Tablet e Desktop.
+* **Modo Escuro/Claro:** (Planejado/Em implementação).
+* **Performance:** Otimização de fontes (Montserrat) e imagens via Next.js.
+
+## 📂 Estrutura do Projeto
+
+A arquitetura segue os padrões do **Next.js App Router**:
+
+~~~
+├── src/
+│   ├── app/             # Rotas e Layouts (App Router)
+│   ├── components/      # Componentes React modulares
+│   │   ├── layout/      # Navbar, Footer
+│   │   ├── sections/    # Seções da Home (Hero, Projetos, etc.)
+│   │   └── ui/          # Botões, Cards, Ícones reutilizáveis
+│   ├── data/            # Dados estáticos (Projetos, Skills)
+│   └── styles/          # Estilos globais
+~~~
+
+## 🔧 Como Rodar Localmente
+
+Siga os passos abaixo para clonar e executar o projeto em sua máquina:
+
+~~~
+git clone [https://github.com/SEU-USUARIO/meu-portfolio.git](https://github.com/SEU-USUARIO/meu-portfolio.git)
+~~~
+
+~~~
+cd meu-portfolio
+npm install
+~~~
+
+~~~
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+~~~
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 Deploy
+O deploy contínuo é realizado através da Vercel, garantindo alta disponibilidade e performance global.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📄 Licença
+Este projeto está sob a licença MIT. Sinta-se à vontade para usar como inspiração.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Desenvolvido com 💙 por Gabriel Martielo da Silva
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+LinkedIn: https://www.linkedin.com/in/gabrielmartielo \
+GitHub: https://github.com/smartielo/
