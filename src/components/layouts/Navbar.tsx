@@ -33,7 +33,7 @@ export function Navbar() {
       transition={{ duration: 0.8 }}
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-black/80 backdrop-blur-md shadow-lg py-4 border-b border-white/10"
+          ? "bg-black/80 backdrop-blur-md shadow-lg py-4"
           : "bg-transparent py-6"
       }`}
     >

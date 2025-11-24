@@ -1,10 +1,12 @@
+// src/data/profile.ts
+
 export interface Project {
   title: string;
   description: string;
   tags: string[];
   repoLink: string;
   demoLink?: string;
-  image: string; // Caminho da imagem em /public ou URL
+  image: string;
 }
 
 export interface Education {
@@ -13,25 +15,46 @@ export interface Education {
   period: string;
 }
 
+// Nova interface para Skills categorizadas
+export interface SkillCategory {
+  category: string;
+  skills: string[];
+}
+
 export const profileData = {
-  name: "Gabriel M.", // Coloque seu nome completo aqui
-  role: "Desenvolvedor Full Stack",
-  headline: "Estudante de Ciência da Computação apaixonado por React e Interfaces Modernas.",
+  name: "Gabriel Martielo", 
+  // MUDANÇA ESTRATÉGICA 1: Título mais abrangente
+  role: "Estudante de Ciência da Computação",
+  
+  // MUDANÇA ESTRATÉGICA 2: Headline que conecta as duas áreas
+  headline: "Explorando a tecnologia através do Desenvolvimento Full Stack e da Análise de Dados. Transformando problemas complexos em soluções digitais.",
+  
   location: "Brasil",
-  email: "seu.email@exemplo.com", // Coloque seu email real
-  linkedin: "https://linkedin.com/in/seu-perfil",
-  github: "https://github.com/seu-user",
+  email: "dev.gabrielmartielo@gmail.com", 
+  linkedin: "https://linkedin.com/in/gabrielmartielo",
+  github: "https://github.com/smartielo",
   
   about: `
-    Sou um desenvolvedor focado em criar experiências web fluidas e performáticas. 
-    Atualmente cursando Ciência da Computação, combino fundamentos teóricos sólidos 
-    com as tecnologias mais modernas do mercado, como Next.js e React.
+    Sou um estudante de Ciência da Computação apaixonado por entender como os dados podem impulsionar aplicações web modernas. 
+    Não me limito a uma única stack: transito entre a criação de interfaces fluídas com React e a análise de datasets com Python.
+    Meu objetivo é utilizar a tecnologia para resolver problemas reais, seja no front-end ou nos bastidores dos dados.
   `,
 
+  // MUDANÇA ESTRATÉGICA 3: Skills divididas (Isso vai ajudar muito no visual depois)
   skills: [
-    "React", "Next.js", "TypeScript", "Tailwind CSS", 
-    "Node.js", "Python", "Git", "Figma"
-  ],
+    {
+      category: "Front-end & UI",
+      skills: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"]
+    },
+    {
+      category: "Back-end & Dados",
+      skills: ["Node.js", "Python", "Pandas", "SQL", "APIs REST"]
+    },
+    {
+      category: "Ferramentas",
+      skills: ["Git", "GitHub", "VS Code", "Figma"]
+    }
+  ] as SkillCategory[],
 
   projects: [
     {
@@ -39,16 +62,16 @@ export const profileData = {
       description: "Site pessoal com geração dinâmica de PDF e animações fluídas.",
       tags: ["Next.js", "React-PDF", "Framer Motion"],
       repoLink: "https://github.com/...",
-      image: "/projects/portfolio-cover.jpg" // Vamos adicionar essas imagens depois
+      image: "/projects/portfolio-cover.jpg" 
     },
-    // Adicione mais projetos aqui...
+    // DICA: Adicione um projeto de DADOS aqui futuramente (ex: Dashboard em Python/Streamlit)
   ] as Project[],
 
   education: [
     {
-      institution: "Universidade X", // Nome da sua faculdade
+      institution: "Unisagrado",
       degree: "Bacharelado em Ciência da Computação",
-      period: "2023 - Presente"
+      period: "2025 - Presente"
     }
   ] as Education[]
 };
