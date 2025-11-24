@@ -31,16 +31,21 @@ export function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+      className={`fixed top-0 z-80 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-black/80 backdrop-blur-md shadow-lg py-4"
+          // MUDEI AQUI:
+          // De: bg-black/80 ou bg-black/95
+          // Para: bg-black/40 (Mais transparente) + backdrop-blur-xl (Desfoque mais forte)
+          ? "bg-black/40 backdrop-blur-xl shadow-lg py-4" 
           : "bg-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo / Nome */}
-        <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-          {`<${profileData.name.split(" ")[0]} />`}
+        <Link 
+          href="/" 
+          className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent hover:scale-105 transition-transform">
+          dev.gabrielmartielo/ui
         </Link>
 
         {/* Links Desktop */}

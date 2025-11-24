@@ -85,8 +85,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
       
       {/* Pequena dica visual para mostrar que tem algo escondido */}
-      <div className="absolute bottom-6 right-6 text-white/50 group-hover:opacity-0 transition-opacity duration-300">
-        <span className="text-sm">Passar o mouse ↗</span>
+      <div className="absolute bottom-6 right-6 text-white/50 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+        <span className="text-sm font-medium flex items-center gap-1">
+          {/* Texto para Mobile (aparece por padrão, some em telas md) */}
+          <span className="md:hidden">Toque para ver</span>
+          
+          {/* Texto para Desktop (escondido por padrão, aparece em telas md) */}
+          <span className="hidden md:inline">Passar o mouse</span>
+           ↗
+        </span>
       </div>
     </div>
   );
