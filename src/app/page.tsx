@@ -17,9 +17,6 @@ export default function Home() {
       <Projects />
       <About />
       <Contact />
-      <div className="h-[1000px] flex items-center justify-center text-gray-600">
-        <p>Role para baixo para ver o efeito da Navbar...</p>
-      </div>
     </main>
   );
 }
