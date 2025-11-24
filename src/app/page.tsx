@@ -1,14 +1,17 @@
 // src/app/page.tsx
+import { Navbar } from "@/components/layouts/Navbar";
+import { Hero } from "@/components/sections/HeroSection";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold text-blue-500">
-        Setup Concluído! 🚀
-      </h1>
-      <p className="mt-4 text-gray-300">
-        Pronto para começar a construir as seções.
-      </p>
+    <main className="bg-gray-950 min-h-screen text-white">
+      <Navbar />
+      <Hero />
+      
+      {/* Espaço temporário para testar o scroll da Navbar */}
+      <div className="h-[1000px] flex items-center justify-center text-gray-600">
+        <p>Role para baixo para ver o efeito da Navbar...</p>
+      </div>
     </main>
   );
 }
