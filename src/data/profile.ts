@@ -33,6 +33,12 @@ export interface Course {
   link?: string; // Link para o certificado (usaremos no futuro botão do site)
 }
 
+export interface TechProgress {
+  label: string;
+  level: number; // Porcentagem (0 a 100)
+  color: string; // Cor da barra (Hex)
+}
+
 export const profileData = {
   name: "Gabriel Martielo Da Silva",
   role: "Estudante de Ciência da Computação",
@@ -139,6 +145,29 @@ export const profileData = {
       institution: "Udemy",
       duration: "5h"
     }
-  ] as Course[]
-};
+  ] as Course[],
 
+  studying: [
+    { label: "Kotlin", level: 75, color: "#7F52FF" }, // Roxo Kotlin
+    { label: "Python", level: 60, color: "#3776AB" }, // Azul Python
+    { label: "Docker", level: 40, color: "#2496ED" }, // Azul Docker
+    { label: "Cloud (AWS)", level: 30, color: "#FF9900" }, // Laranja AWS
+  ] as TechProgress[],
+
+  // Seu Setup
+  setup: {
+    image: "/projects/meu-setup.jpg", // Vamos colocar essa foto depois
+    description: "Meu cantinho de estudos e desenvolvimento. Focado em produtividade e conforto.",
+    specs: [
+      "S23 Ultra",
+      "Alexa Gen4",
+      "ASUS TUF F15",
+      "Monitor AOC Gaming 27pol",
+      "Teclado Mecânico Redragon",
+      "Mouse Attack Shark X11",
+      "Fone KZ ZSN Pro X",
+      "HeadPhone QCY H2",
+      "Controle GameSir Nova Lite",
+    ]
+  }
+};
