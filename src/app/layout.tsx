@@ -11,6 +11,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.gabrielmartielo.com.br'),
   title: "Gabriel Martielo | Full Stack & Dados",
   description: "Portfólio de Gabriel Martielo. Desenvolvedor Full Stack e Estudante de Ciência da Computação, focado em React, Next.js, Python e Soluções de Dados.",
   keywords: ["Gabriel Martielo", "Full Stack", "Desenvolvedor", "React", "Next.js", "Ciência de Dados", "Portfólio"],
