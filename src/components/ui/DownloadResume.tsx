@@ -17,7 +17,9 @@ export function DownloadResume() {
   }, []);
 
   const handleDownloadStart = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' }) //leva ao topo da pagina ao iniciar o download
     // 1. Inicia a Animação de Loading
+    
     setIsGenerating(true);
     
     // 2. Espera o tempo "Fake" (2.5 segundos)
