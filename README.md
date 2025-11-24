@@ -3,7 +3,18 @@
 Bem-vindo ao repositório do meu site portfólio pessoal.
 Este projeto foi desenvolvido com foco em **Performance**, **UX (Experiência do Usuário)** e **Design Fluido**, utilizando as tecnologias mais modernas do ecossistema React.
 
+🔗 **Acesse online:** [gabrielmartielo.com.br](https://gabrielmartielo.com.br)
+
 O objetivo é apresentar meus projetos, habilidades e trajetória profissional através de uma interface imersiva e interativa.
+
+💡 O Diferencial: PDF Dinâmico & Fonte Única da Verdade
+
+A principal inovação deste projeto é a arquitetura de dados.
+Ao invés de manter um site e um arquivo PDF (Currículo) separados e desatualizados, criei um sistema onde:
+
+1.  Todos os dados (Experiências, Projetos, Skills) residem em um único arquivo TypeScript (`src/data/profile.ts`).
+2.  O site consome esses dados para renderizar a interface visual.
+3.  **O PDF é gerado em tempo real** no navegador do usuário usando os *mesmos dados*, garantindo que o recrutador sempre baixe a versão mais atualizada do meu currículo.
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -13,6 +24,7 @@ Este projeto utiliza uma stack moderna voltada para escalabilidade e performance
 * **Linguagem:** [TypeScript](https://www.typescriptlang.org/) (Segurança de tipos)
 * **Estilização:** [Tailwind CSS](https://tailwindcss.com/)
 * **Animações:** [Framer Motion](https://www.framer.com/motion/) (Transições complexas e micro-interações)
+* **PDF Generation:** [@react-pdf/renderer](https://react-pdf.org/)
 * **UX & Scroll:** [@studio-freight/lenis](https://github.com/studio-freight/lenis) (Smooth Scrolling premium)
 * **Componentes UI:** [Swiper.js](https://swiperjs.com/) (Carrossel interativo) & [React Icons](https://react-icons.github.io/react-icons/)
 
@@ -30,13 +42,15 @@ A arquitetura segue os padrões do **Next.js App Router**:
 
 ~~~
 ├── src/
-│   ├── app/             # Rotas e Layouts (App Router)
+│   ├── app/             # Next.js App Router
 │   ├── components/      # Componentes React modulares
 │   │   ├── layout/      # Navbar, Footer
+│   │   ├── pdf/         # Layout e Lógica do Documento PDF
 │   │   ├── sections/    # Seções da Home (Hero, Projetos, etc.)
 │   │   └── ui/          # Botões, Cards, Ícones reutilizáveis
 │   ├── data/            # Dados estáticos (Projetos, Skills)
-│   └── styles/          # Estilos globais
+│   │   └── styles/      # A "Fonte da Verdade" (Dados do Currículo)
+│   └── styles/          # Configurações globais do Tailwind
 ~~~
 
 ## 🔧 Como Rodar Localmente
