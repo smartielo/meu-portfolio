@@ -11,8 +11,26 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Portfólio | Gabriel M.",
-  description: "Desenvolvedor Full Stack e Estudante de Ciência da Computação",
+  title: "Gabriel Martielo | Full Stack & Dados",
+  description: "Portfólio de Gabriel Martielo. Desenvolvedor Full Stack e Estudante de Ciência da Computação, focado em React, Next.js, Python e Soluções de Dados.",
+  keywords: ["Gabriel Martielo", "Full Stack", "Desenvolvedor", "React", "Next.js", "Ciência de Dados", "Portfólio"],
+  authors: [{ name: "Gabriel Martielo", url: "https://dev.gabrielmartielo.com.br" }],
+  openGraph: {
+    title: "Gabriel Martielo | Full Stack & Dados",
+    description: "Confira meus projetos, setup e baixe meu currículo atualizado.",
+    url: "https://dev.gabrielmartielo.com.br",
+    siteName: "Portfólio Gabriel Martielo",
+    images: [
+      {
+        url: "/og-image.jpg", // Vamos criar essa imagem no passo abaixo
+        width: 1200,
+        height: 630,
+        alt: "Gabriel Martielo Portfólio Cover",
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
