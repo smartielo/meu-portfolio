@@ -1,7 +1,7 @@
 // src/app/page.tsx
 import { Navbar } from "@/components/layouts/Navbar";
-import { Hero } from "@/components/sections/HeroSection";
-import { Skills } from "@/components/sections/SkillsSection";
+import { Hero } from "@/components/sections/Hero";
+import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
 
 export default function Home() {
