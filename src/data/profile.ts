@@ -169,5 +169,25 @@ export const profileData = {
       "HeadPhone QCY H2",
       "Controle GameSir Nova Lite",
     ]
-  }
+  },
+
+  personalImage: "/projects/me.png",
+
+  hobbies: [
+    {
+      label: "Games",
+      emoji: "🎮",
+      items: ["Minecraft", "Forza Horizon 5", "EA FC"] // Seus jogos favoritos
+    },
+    {
+      label: "Música",
+      emoji: "🎧",
+      items: ["Pagode", "Eletrônica", "Rap/Hip-Hop", "Sertanejo", "FlashBack's"] // Seus gostos musicais
+    },
+    {
+      label: "Esportes",
+      emoji: "⚽", // Ou 🏋️‍♂️
+      items: ["Futebol", "Basquete", "Vôlei", "Futebol Americano", "Corrida"] 
+    }
+  ]
 };

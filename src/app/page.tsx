@@ -5,7 +5,7 @@ import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
-
+import { Personal } from "@/components/sections/Personal";
 import { Analytics } from "@vercel/analytics/next"
 
 export default function Home() {
@@ -16,6 +16,7 @@ export default function Home() {
       <Skills />
       <Projects />
       <About />
+      <Personal />
       <Contact />
     </main>
   );
