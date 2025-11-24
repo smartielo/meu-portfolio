@@ -74,26 +74,33 @@ export function Navbar() {
       </div>
 
       {/* Menu Mobile (Dropdown) */}
+      {/* Menu Mobile (Dropdown) */}
       {isMobileMenuOpen && (
         <motion.div 
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
-          className="md:hidden bg-black/95 backdrop-blur-xl border-b border-white/10"
+          className="md:hidden bg-black/90 backdrop-blur-xl border-b border-white/10 overflow-hidden"
         >
-          <div className="flex flex-col p-6 gap-4">
+          <div className="flex flex-col p-6 gap-6 items-center"> {/* Adicionei items-center para centralizar */}
              {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-300 hover:text-white"
+                  className="text-gray-300 hover:text-white text-lg font-medium"
                 >
                   {link.name}
                 </Link>
              ))}
+             
+             {/* ADICIONE O BOTÃO AQUI NO MENU MOBILE */}
+             <div onClick={() => setIsMobileMenuOpen(false)}>
+                <DownloadResume />
+             </div>
           </div>
         </motion.div>
       )}
     </motion.nav>
   );
 }
+    
