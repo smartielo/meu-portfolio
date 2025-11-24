@@ -1,12 +1,14 @@
 // src/app/page.tsx
 import { Navbar } from "@/components/layouts/Navbar";
 import { Hero } from "@/components/sections/HeroSection";
+import { Skills } from "@/components/sections/SkillsSection";
 
 export default function Home() {
   return (
     <main className="bg-gray-950 min-h-screen text-white">
       <Navbar />
       <Hero />
+      <Skills />
       
       {/* Espaço temporário para testar o scroll da Navbar */}
       <div className="h-[1000px] flex items-center justify-center text-gray-600">
