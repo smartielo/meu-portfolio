@@ -6,6 +6,8 @@ import { Projects } from "@/components/sections/Projects";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 
+import { Analytics } from "@vercel/analytics/next"
+
 export default function Home() {
   return (
     <main className="bg-gray-950 min-h-screen text-white">

@@ -73,7 +73,7 @@ export const profileData = {
   projects: [
     {
       title: "Sangue Bom",
-      description: "Site voltado à comunidade com o objetivo de conscientização e informação sobre a doação de sangue na cidade de Bauru. Desenvolvido como Projeto Integrador no SENAC.",
+      description: "Site voltado à comunidade com o objetivo de conscientização e informação sobre a doação de sangue na cidade de Bauru.",
       tags: ["React.JS", "Web", "Utilidade Pública"],
       repoLink: "https://github.com/guspavanelli/projetointegrador",
       image: "/projects/sangue-bom.png"

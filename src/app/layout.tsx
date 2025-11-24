@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google"; // Importando a fonte
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 // Configuração da fonte
 const montserrat = Montserrat({ 
@@ -44,6 +45,7 @@ export default function RootLayout({
       <body className={`${montserrat.variable} font-sans bg-gray-950 text-white antialiased`}>
         {/* O 'bg-gray-950' define o fundo escuro padrão do site */}
         {children}
+        <Analytics />
       </body>
     </html>
   );

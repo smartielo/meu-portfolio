@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-pdf/renderer": "^4.3.1",
     "@studio-freight/lenis": "^1.0.42",
+    "@vercel/analytics": "^1.5.0",
     "framer-motion": "^12.23.24",
     "next": "16.0.3",
     "react": "19.2.0",
