@@ -2,7 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image"; // Importei o Image
+import Image from "next/image";
 import { profileData } from "@/data/profile";
 import { FiMusic, FiMonitor, FiActivity, FiUser } from "react-icons/fi";
 
@@ -13,13 +13,12 @@ export function Personal() {
         
         <div className="grid md:grid-cols-2 gap-12">
           
-          {/* COLUNA 1: Texto Sobre Mim (Bio Pessoal) */}
+          {/* COLUNA 1: Texto Sobre Mim */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.1 }} 
             transition={{ duration: 0.6 }}
-            // MUDANÇA VISUAL: Adicionei um background de vidro para o texto não ficar "solto"
             className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl h-full flex flex-col"
           >
             <div className="flex items-center gap-3 mb-8 border-b border-white/10 pb-6">
@@ -31,7 +30,7 @@ export function Personal() {
               </h2>
             </div>
             
-            <div className="prose prose-invert text-gray-300 leading-relaxed text-sm md:text-base space-y-6 text-justify">
+            <div className="prose prose-invert text-gray-300 leading-relaxed text-sm md:text-base space-y-6 text-justify flex-grow">
               <p>
                 Além de linhas de código e commits, sou uma pessoa movida a desafios e criatividade. 
                 Acredito que o equilíbrio entre a vida profissional e pessoal é a chave para a alta performance.
@@ -67,9 +66,9 @@ export function Personal() {
           </motion.div>
 
           {/* COLUNA 2: Hobbies + FOTO */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 h-full">
             
-            {/* --- SEÇÃO DE HOBBIES (Mantida igual) --- */}
+            {/* --- SEÇÃO DE HOBBIES --- */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -91,6 +90,7 @@ export function Personal() {
             </motion.div>
 
             <div className="grid grid-cols-2 gap-6">
+              {/* Card de MÚSICA (Agora em Lista) */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -102,17 +102,19 @@ export function Personal() {
                   <FiMusic size={20} />
                   <h3 className="font-bold text-white">Música</h3>
                 </div>
-                <div className="flex gap-1 items-end h-8 mb-2">
-                   <motion.div animate={{ height: [10, 20, 10] }} transition={{ repeat: Infinity, duration: 0.8 }} className="w-1 bg-green-500 rounded-full" />
-                   <motion.div animate={{ height: [15, 25, 10] }} transition={{ repeat: Infinity, duration: 1.1 }} className="w-1 bg-green-500 rounded-full" />
-                   <motion.div animate={{ height: [8, 22, 12] }} transition={{ repeat: Infinity, duration: 0.9 }} className="w-1 bg-green-500 rounded-full" />
-                   <motion.div animate={{ height: [12, 18, 10] }} transition={{ repeat: Infinity, duration: 1.2 }} className="w-1 bg-green-500 rounded-full" />
-                </div>
-                <p className="text-sm text-gray-400 truncate">
-                  {profileData.hobbies[1].items.join(", ")}
-                </p>
+                
+                {/* Lista padronizada com bolinhas verdes */}
+                <ul className="text-sm text-gray-400 space-y-1">
+                   {profileData.hobbies[1].items.map(music => (
+                     <li key={music} className="flex items-center gap-2">
+                       <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                       {music}
+                     </li>
+                   ))}
+                </ul>
               </motion.div>
 
+              {/* Card de ESPORTES */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -135,32 +137,33 @@ export function Personal() {
               </motion.div>
             </div>
 
-            {/* --- NOVA SEÇÃO: FOTO PESSOAL --- */}
-            {/* Como o texto na esquerda é grande, essa foto preenche o espaço na direita */}
+            {/* --- SEÇÃO: FOTO PESSOAL --- */}
             <motion.div
                initial={{ opacity: 0, scale: 0.9 }}
                whileInView={{ opacity: 1, scale: 1 }}
                viewport={{ once: false }}
                transition={{ duration: 0.6, delay: 0.3 }}
-               className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl group"
+               className="relative w-full flex-grow rounded-2xl overflow-hidden border border-white/10 shadow-2xl group min-h-[300px]"
             >
-               {/* Overlay colorido ao passar o mouse */}
                <div className="absolute inset-0 bg-blue-600/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
                
-               {/* Imagem Pessoal */}
                <Image
-                  src={profileData.personalImage || ""} // Pega do profile.ts
+                  src={profileData.personalImage || ""} 
                   alt="Gabriel Martielo"
                   width={0}
                   height={0}
                   sizes="100vw"
-                  style={{ width: '100%', height: 'auto' }}
+                  style={{ width: '100%', height: '100%' }} 
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   onError={(e) => {
                      e.currentTarget.style.display = "none";
                   }}
                />
                
+               <div className="absolute inset-0 bg-gray-800 flex flex-col items-center justify-center -z-10 text-gray-500">
+                  <FiUser size={48} />
+                  <span className="text-sm mt-2">Adicione sua foto em public/me.jpg</span>
+               </div>
             </motion.div>
 
           </div>

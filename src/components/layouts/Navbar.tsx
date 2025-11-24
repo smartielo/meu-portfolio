@@ -1,9 +1,10 @@
+// src/components/layout/Navbar.tsx
 "use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FiGithub, FiLinkedin, FiMenu, FiX } from "react-icons/fi"; // Ícones
+import { FiMenu, FiX } from "react-icons/fi"; 
 import { profileData } from "@/data/profile";
 import { DownloadResume } from "@/components/ui/DownloadResume";
 
@@ -11,7 +12,6 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Detecta o scroll para mudar o estilo da navbar
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -23,6 +23,7 @@ export function Navbar() {
   const navLinks = [
     { name: "Início", href: "#hero" },
     { name: "Habilidades", href: "#skills" },
+    { name: "Sobre", href: "#about" }, // Adicionei o link para a seção Sobre/Setup
     { name: "Projetos", href: "#projects" },
     { name: "Contato", href: "#contact" },
   ];
@@ -32,12 +33,9 @@ export function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className={`fixed top-0 z-80 w-full transition-all duration-300 ${
-        isScrolled
-          // MUDEI AQUI:
-          // De: bg-black/80 ou bg-black/95
-          // Para: bg-black/40 (Mais transparente) + backdrop-blur-xl (Desfoque mais forte)
-          ? "bg-black/40 backdrop-blur-xl shadow-lg py-4" 
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled || isMobileMenuOpen 
+          ? "bg-black/60 backdrop-blur-xl shadow-lg py-4" 
           : "bg-transparent py-6"
       }`}
     >
@@ -45,8 +43,9 @@ export function Navbar() {
         {/* Logo / Nome */}
         <Link 
           href="/" 
-          className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent hover:scale-105 transition-transform">
-          dev.gabrielmartielo/ui
+          className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent hover:scale-105 transition-transform"
+        >
+          dev.gabrielmartielo/about
         </Link>
 
         {/* Links Desktop */}
@@ -74,14 +73,13 @@ export function Navbar() {
       </div>
 
       {/* Menu Mobile (Dropdown) */}
-      {/* Menu Mobile (Dropdown) */}
       {isMobileMenuOpen && (
         <motion.div 
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
-          className="md:hidden bg-black/90 backdrop-blur-xl border-b border-white/10 overflow-hidden"
+          className="md:hidden bg-black/60 backdrop-blur-xl overflow-hidden"
         >
-          <div className="flex flex-col p-6 gap-6 items-center"> {/* Adicionei items-center para centralizar */}
+          <div className="flex flex-col p-6 gap-6 items-center">
              {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -93,7 +91,6 @@ export function Navbar() {
                 </Link>
              ))}
              
-             {/* ADICIONE O BOTÃO AQUI NO MENU MOBILE */}
              <div onClick={() => setIsMobileMenuOpen(false)}>
                 <DownloadResume />
              </div>
@@ -103,4 +100,3 @@ export function Navbar() {
     </motion.nav>
   );
 }
-    

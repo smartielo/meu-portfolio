@@ -107,8 +107,15 @@ export function About() {
                 <div className="w-3 h-3 rounded-full bg-yellow-500" />
                 <div className="w-3 h-3 rounded-full bg-green-500" />
               </div>
-              <p className="text-xs text-gray-500 font-mono">
-                $ while(alive) &#123; study(); code(); &#125;
+              <p className="text-base md:text-lg font-mono text-gray-300">
+                <span className="text-green-400 mr-2">$</span>
+                <span className="text-purple-400">while</span>(alive) &#123; 
+                <br className="md:hidden" /> 
+                <span className="pl-4 md:pl-0"> 
+                  <span className="text-blue-400">study</span>(); <span className="text-blue-400">code</span>(); 
+                </span>
+                &#125;
+                <span className="animate-pulse inline-block w-2 h-5 ml-1 bg-gray-500 align-middle" /> {/* Cursor piscando */}
               </p>
             </div>
 
