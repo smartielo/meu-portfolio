@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMenu, FiX } from "react-icons/fi"; // Ícones
 import { profileData } from "@/data/profile";
+import { DownloadResume } from "@/components/ui/DownloadResume";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -60,10 +61,7 @@ export function Navbar() {
             </Link>
           ))}
           
-          {/* Botão Currículo (Placeholder para o PDF) */}
-          <button className="px-4 py-2 text-sm font-semibold text-black bg-white rounded-full hover:bg-gray-200 transition-colors">
-            Baixar CV
-          </button>
+          <DownloadResume />
         </div>
 
         {/* Menu Mobile (Ícone) */}

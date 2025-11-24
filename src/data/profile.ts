@@ -1,5 +1,4 @@
 // src/data/profile.ts
-
 export interface Project {
   title: string;
   description: string;
@@ -15,64 +14,104 @@ export interface Education {
   period: string;
 }
 
-// Nova interface para Skills categorizadas
 export interface SkillCategory {
   category: string;
   skills: string[];
 }
 
+export interface Experience {
+  role: string;
+  company: string;
+  period: string;
+  description?: string;
+}
+
 export const profileData = {
-  name: "Gabriel Martielo", 
-  // MUDANÇA ESTRATÉGICA 1: Título mais abrangente
+  name: "Gabriel Martielo Da Silva",
   role: "Estudante de Ciência da Computação",
-  
-  // MUDANÇA ESTRATÉGICA 2: Headline que conecta as duas áreas
-  headline: "Explorando a tecnologia através do Desenvolvimento Full Stack e da Análise de Dados. Transformando problemas complexos em soluções digitais.",
-  
-  location: "Brasil",
-  email: "dev.gabrielmartielo@gmail.com", 
-  linkedin: "https://linkedin.com/in/gabrielmartielo",
+  headline: "Transicionando da área mecânica para a tecnologia da informação.",
+  location: "Bauru, São Paulo, Brasil",
+  email: "dev.gabrielmartielo@gmail.com",
+  email2: "gabrielmartielo3214@gmail.com",
+  linkedin: "https://www.linkedin.com/in/gabrielmartielo",
   github: "https://github.com/smartielo",
   
   about: `
-    Sou um estudante de Ciência da Computação apaixonado por entender como os dados podem impulsionar aplicações web modernas. 
-    Não me limito a uma única stack: transito entre a criação de interfaces fluídas com React e a análise de datasets com Python.
-    Meu objetivo é utilizar a tecnologia para resolver problemas reais, seja no front-end ou nos bastidores dos dados.
+    Sou formado na área mecânica, mas ao longo da minha trajetória percebi que minha verdadeira vocação está no desenvolvimento de software. 
+    Desde então, tenho me dedicado ao estudo da programação por meio de cursos especializados e atualmente curso Ciência da Computação.
+    Busco uma oportunidade para aplicar meus conhecimentos na prática, contribuir com soluções tecnológicas e seguir crescendo profissionalmente na área de tecnologia.
   `,
 
-  // MUDANÇA ESTRATÉGICA 3: Skills divididas (Isso vai ajudar muito no visual depois)
   skills: [
     {
-      category: "Front-end & UI",
-      skills: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"]
+      category: "Front-end",
+      skills: ["React.JS", "JavaScript", "HTML/CSS"] 
     },
     {
-      category: "Back-end & Dados",
-      skills: ["Node.js", "Python", "Pandas", "SQL", "APIs REST"]
+      category: "Soft Skills & Outros",
+      skills: ["Organização", "Trabalho em Equipe", "Aprendizado Contínuo", "Inglês Intermediário"]
     },
     {
       category: "Ferramentas",
-      skills: ["Git", "GitHub", "VS Code", "Figma"]
+      skills: ["Git", "GitHub", "VS Code"]
     }
   ] as SkillCategory[],
 
   projects: [
     {
-      title: "Portfólio Interativo",
-      description: "Site pessoal com geração dinâmica de PDF e animações fluídas.",
-      tags: ["Next.js", "React-PDF", "Framer Motion"],
-      repoLink: "https://github.com/...",
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop" 
+      title: "Sangue Bom",
+      description: "Site voltado à comunidade com o objetivo de conscientização e informação sobre a doação de sangue na cidade de Bauru. Desenvolvido como Projeto Integrador no SENAC.",
+      tags: ["React.JS", "Web", "Utilidade Pública"],
+      repoLink: "https://github.com/smartielo", // Link genérico do seu perfil, depois você coloca o do repo específico
+      image: "https://images.unsplash.com/photo-1615461066841-6116e61058f4?q=80&w=1000&auto=format&fit=crop" // Placeholder temático (Sangue/Saúde)
     },
-    // DICA: Adicione um projeto de DADOS aqui futuramente (ex: Dashboard em Python/Streamlit)
+    {
+      title: "Guiar. LTDA",
+      description: "Criação de uma empresa e um produto (kit didático de transmissão de forças) para o TCC técnico do CTI Bauru.",
+      tags: ["Gestão de Projeto", "Empreendedorismo", "Mecânica"],
+      repoLink: "https://drive.google.com/file/d/1zJK0n4TboYOtueZxFvzIoVErfl6iO8Ze/view?usp=sharing",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop" // Placeholder temático (Engenharia)
+    }
   ] as Project[],
 
   education: [
     {
       institution: "Unisagrado",
       degree: "Bacharelado em Ciência da Computação",
-      period: "2025 - Presente"
+      period: "Março 2025 - Dezembro 2028"
+    },
+    {
+      institution: "Colégio Técnico Industrial (CTI Bauru)",
+      degree: "Ensino Médio e Técnico em Mecânica",
+      period: "Fevereiro 2020 - Dezembro 2022"
+    },
+    {
+      institution: "SENAC Bauru",
+      degree: "Desenvolvedor Full Stack & React.JS",
+      period: "Cursos Livres"
     }
-  ] as Education[]
-  
+  ] as Education[],
+
+  experiences: [
+    {
+      role: "Técnico de Planejamento",
+      company: "CPFL Energia",
+      period: "Agosto 2024 - Atual"
+    },
+    {
+      role: "Montador Mecânico",
+      company: "Gali",
+      period: "Março 2024 - Maio 2024"
+    },
+    {
+      role: "Auxiliar de Produção",
+      company: "Tilibra",
+      period: "Maio 2023 - Março 2024"
+    },
+    {
+      role: "Operador de Telemarketing",
+      company: "Concilig",
+      period: "Março 2023 - Maio 2023"
+    }
+  ] as Experience[]
 };
