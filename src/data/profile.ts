@@ -62,7 +62,7 @@ export const profileData = {
       description: "Site pessoal com geração dinâmica de PDF e animações fluídas.",
       tags: ["Next.js", "React-PDF", "Framer Motion"],
       repoLink: "https://github.com/...",
-      image: "/projects/portfolio-cover.jpg" 
+      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop" 
     },
     // DICA: Adicione um projeto de DADOS aqui futuramente (ex: Dashboard em Python/Streamlit)
   ] as Project[],
@@ -74,4 +74,5 @@ export const profileData = {
       period: "2025 - Presente"
     }
   ] as Education[]
+  
 };
