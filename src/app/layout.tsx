@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "Portfólio Gabriel Martielo",
     images: [
       {
-        url: "/og-image.jpg", // Vamos criar essa imagem no passo abaixo
+        url: "/projects/og-image.png", // Vamos criar essa imagem no passo abaixo
         width: 1200,
         height: 630,
         alt: "Gabriel Martielo Portfólio Cover",
