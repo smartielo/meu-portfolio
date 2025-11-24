@@ -2,98 +2,223 @@
 import { Page, Text, View, Document, StyleSheet, Link } from "@react-pdf/renderer";
 import { profileData } from "@/data/profile";
 
-// Definindo estilos do PDF
+const colors = {
+  primary: "#1e3a8a", 
+  secondary: "#3b82f6", 
+  text: "#374151", 
+  textLight: "#6B7280", 
+  white: "#FFFFFF",
+  bgLight: "#F3F4F6",
+  border: "#E5E7EB"
+};
+
 const styles = StyleSheet.create({
-  page: { flexDirection: "column", backgroundColor: "#FFFFFF", padding: 40, fontFamily: "Helvetica" },
-  header: { marginBottom: 20, borderBottomWidth: 2, borderBottomColor: "#111827", paddingBottom: 10 },
-  name: { fontSize: 24, fontWeight: "bold", textTransform: "uppercase", color: "#111827" },
-  role: { fontSize: 12, color: "#4B5563", marginTop: 4 },
-  contactInfo: { flexDirection: "row", gap: 10, fontSize: 10, marginTop: 8, color: "#6B7280" },
-  section: { marginTop: 15, marginBottom: 10 },
-  sectionTitle: { fontSize: 14, fontWeight: "bold", borderBottomWidth: 1, borderBottomColor: "#E5E7EB", paddingBottom: 4, marginBottom: 8, textTransform: "uppercase", color: "#374151" },
-  text: { fontSize: 10, lineHeight: 1.5, color: "#374151", marginBottom: 4 },
-  skillCategory: { flexDirection: "row", flexWrap: "wrap", marginBottom: 4 },
-  skillLabel: { fontSize: 10, fontWeight: "bold", marginRight: 4 },
-  projectTitle: { fontSize: 11, fontWeight: "bold", marginTop: 6 },
-  projectLink: { fontSize: 9, color: "#2563EB", textDecoration: "none" },
+  page: { 
+    flexDirection: "column", 
+    backgroundColor: "#FFFFFF", 
+    fontFamily: "Helvetica",
+    paddingBottom: 65,
+    paddingTop: 50 
+  },
+  
+  header: { 
+    backgroundColor: colors.primary, 
+    padding: 30,
+    marginTop: -50,
+    marginHorizontal: -50, 
+    paddingTop: 60, 
+    // MUDANÇA AQUI: Aumentei de 50 para 80 para dar o respiro lateral
+    paddingHorizontal: 80, 
+    marginBottom: 20,
+    flexDirection: "column", 
+    alignItems: "flex-start" 
+  },
+  
+  headerName: { fontSize: 26, fontWeight: "bold", color: colors.white, textTransform: "uppercase", letterSpacing: 1 },
+  headerRole: { fontSize: 12, color: "#BFDBFE", marginTop: 4, fontWeight: "medium" },
+  headerContact: { flexDirection: "row", flexWrap: "wrap", gap: 15, marginTop: 15 },
+  link: { color: colors.white, fontSize: 10, textDecoration: "none" },
+
+  smallHeader: {
+    position: 'absolute',
+    top: 20, 
+    left: 40,
+    right: 40,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+    paddingBottom: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  smallHeaderText: { fontSize: 9, color: colors.textLight },
+
+  body: { padding: 30 }, 
+
+  section: { marginBottom: 20 },
+  sectionTitle: { 
+    fontSize: 14, 
+    fontWeight: "bold", 
+    color: colors.primary, 
+    borderBottomWidth: 2, 
+    borderBottomColor: colors.bgLight, 
+    paddingBottom: 4, 
+    marginBottom: 10,
+    textTransform: "uppercase"
+  },
+  
+  text: { fontSize: 10, lineHeight: 1.6, color: colors.text, textAlign: "justify" },
+  subTitle: { fontSize: 11, fontWeight: "bold", color: "#111827" },
+  date: { fontSize: 9, color: colors.textLight, marginBottom: 2 },
+  
+  skillContainer: { flexDirection: "row", flexWrap: "wrap", gap: 6, marginTop: 4 },
+  skillBadge: { 
+    backgroundColor: colors.bgLight, 
+    paddingHorizontal: 8, 
+    paddingVertical: 4, 
+    borderRadius: 4, 
+    fontSize: 9,
+    color: colors.text 
+  },
+
+  itemRow: { flexDirection: "row", justifyContent: "space-between", marginBottom: 2 },
+  itemContainer: { marginBottom: 8, wrap: false }, 
+
+  footer: {
+    position: 'absolute',
+    bottom: 25,
+    left: 30,
+    right: 30,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+    paddingTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  footerText: { color: colors.textLight, fontSize: 8 }
 });
 
 export const ResumeDocument = () => (
   <Document>
     <Page size="A4" style={styles.page}>
       
-      {/* Cabeçalho */}
+      <View style={styles.smallHeader} fixed>
+        <Text style={styles.smallHeaderText} render={({ pageNumber }) => (
+          pageNumber > 1 ? `${profileData.name} - Currículo` : ''
+        )} />
+        <Text style={styles.smallHeaderText} render={({ pageNumber }) => (
+          pageNumber > 1 ? 'Continuação' : ''
+        )} />
+      </View>
+
       <View style={styles.header}>
-        <Text style={styles.name}>{profileData.name}</Text>
-        <Text style={styles.role}>{profileData.role}</Text>
-        <View style={styles.contactInfo}>
-          <Text>{profileData.email}</Text>
-          <Text>/</Text>
-          <Text>{profileData.email2}</Text>
-          <Text>•</Text>
-          <Link src={profileData.linkedin} style={{ color: "#2563EB" }}>LinkedIn</Link>
-          <Text>•</Text>
-          <Link src={profileData.github} style={{ color: "#2563EB" }}>GitHub</Link>
+        <Text style={styles.headerName}>{profileData.name}</Text>
+        <Text style={styles.headerRole}>{profileData.role}</Text>
+        
+        <View style={styles.headerContact}>
+          <Link src={`mailto:${profileData.email}`} style={styles.link}>{profileData.email}</Link>
+          <Text style={{ color: colors.secondary }}>|</Text>
+          <Link src={profileData.linkedin} style={styles.link}>LinkedIn</Link>
+          <Text style={{ color: colors.secondary }}>|</Text>
+          <Link src={profileData.github} style={styles.link}>GitHub</Link>
+          <Text style={{ color: colors.secondary }}>|</Text>
+          <Text style={styles.link}>{profileData.location}</Text>
         </View>
       </View>
 
-      {/* Resumo */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Resumo Profissional</Text>
-        <Text style={styles.text}>{profileData.headline}</Text>
-        <Text style={styles.text}>{profileData.about}</Text>
-      </View>
+      <View style={styles.body}>
+        
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Resumo</Text>
+          <Text style={styles.text}>{profileData.about}</Text>
+        </View>
 
-      {/* Experiência Profissional (NOVO) */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Experiência Profissional</Text>
-        {/* @ts-ignore */}
-        {profileData.experiences?.map((exp: any, index: number) => (
-          <View key={index} style={{ marginBottom: 6 }}>
-            <Text style={{ fontSize: 11, fontWeight: "bold" }}>{exp.company}</Text>
-            <Text style={{ fontSize: 10, color: "#374151" }}>{exp.role}</Text>
-            <Text style={{ fontSize: 10, color: "#6B7280" }}>{exp.period}</Text>
-          </View>
-        ))}
-      </View>
-
-      {/* Habilidades */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Habilidades Técnicas</Text>
-        {profileData.skills.map((category) => (
-          <View key={category.category} style={styles.skillCategory}>
-            <Text style={styles.skillLabel}>{category.category}:</Text>
-            <Text style={styles.text}>{category.skills.join(", ")}</Text>
-          </View>
-        ))}
-      </View>
-
-      {/* Projetos */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Projetos em Destaque</Text>
-        {profileData.projects.map((project, index) => (
-          <View key={index} style={{ marginBottom: 8 }}>
-            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-              <Text style={styles.projectTitle}>{project.title}</Text>
-              <Link src={project.repoLink} style={styles.projectLink}>Ver Projeto</Link>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Competências Técnicas</Text>
+          {profileData.skills.map((category) => (
+            <View key={category.category} style={{ marginBottom: 8 }} wrap={false}>
+              <Text style={{ fontSize: 10, fontWeight: "bold", color: colors.primary, marginBottom: 4 }}>
+                {category.category}
+              </Text>
+              <View style={styles.skillContainer}>
+                {category.skills.map(skill => (
+                  <Text key={skill} style={styles.skillBadge}>{skill}</Text>
+                ))}
+              </View>
             </View>
-            <Text style={styles.text}>{project.description}</Text>
-            <Text style={{ fontSize: 9, color: "#6B7280" }}>Stack: {project.tags.join(" • ")}</Text>
-          </View>
-        ))}
+          ))}
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Experiência Profissional</Text>
+          {/* @ts-ignore */}
+          {profileData.experiences?.map((exp: any, index: number) => (
+            <View key={index} style={styles.itemContainer}>
+              <View style={styles.itemRow}>
+                <Text style={styles.subTitle}>{exp.company}</Text>
+                <Text style={styles.date}>{exp.period}</Text>
+              </View>
+              <Text style={{ fontSize: 10, fontStyle: "italic", marginBottom: 2 }}>{exp.role}</Text>
+              {exp.description && <Text style={styles.text}>{exp.description}</Text>}
+            </View>
+          ))}
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Projetos Relevantes</Text>
+          {profileData.projects.map((project, index) => (
+            <View key={index} style={styles.itemContainer}>
+              <View style={styles.itemRow}>
+                <Text style={styles.subTitle}>{project.title}</Text>
+                {project.repoLink && (
+                  <Link src={project.repoLink} style={{ fontSize: 9, color: colors.secondary }}>Ver Código</Link>
+                )}
+              </View>
+              <Text style={styles.text}>{project.description}</Text>
+              <Text style={{ fontSize: 9, color: colors.textLight, marginTop: 2 }}>
+                Techs: {project.tags.join(" • ")}
+              </Text>
+            </View>
+          ))}
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Formação Acadêmica</Text>
+          {profileData.education.map((edu, index) => (
+            <View key={index} style={styles.itemContainer}>
+              <View style={styles.itemRow}>
+                <Text style={styles.subTitle}>{edu.institution}</Text>
+                <Text style={styles.date}>{edu.period}</Text>
+              </View>
+              <Text style={styles.text}>{edu.degree}</Text>
+            </View>
+          ))}
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Cursos e Aperfeiçoamento</Text>
+          {/* @ts-ignore */}
+          {profileData.courses?.map((course: any, index: number) => (
+            <View key={index} style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 4 }} wrap={false}>
+              <View style={{ flexDirection: "row", gap: 4 }}>
+                <Text style={{ fontSize: 10, fontWeight: "bold" }}>• {course.title}</Text>
+                <Text style={{ fontSize: 10, color: colors.textLight }}>| {course.institution}</Text>
+              </View>
+              <Text style={styles.date}>{course.duration}</Text>
+            </View>
+          ))}
+        </View>
+
       </View>
 
-      {/* Educação */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Formação Acadêmica</Text>
-        {profileData.education.map((edu, index) => (
-          <View key={index}>
-            <Text style={{ fontSize: 11, fontWeight: "bold" }}>{edu.institution}</Text>
-            <Text style={styles.text}>{edu.degree}</Text>
-            <Text style={{ fontSize: 9, color: "#6B7280" }}>{edu.period}</Text>
-            <Text><br /></Text>
-          </View>
-        ))}
+      <View style={styles.footer} fixed>
+        <Text style={styles.footerText}>
+          Gerado em {new Date().toLocaleDateString('pt-BR')} via dev.gabrielmartielo.com.br
+        </Text>
+        <Text style={styles.footerText} render={({ pageNumber, totalPages }) => (
+          `${pageNumber} / ${totalPages}`
+        )} fixed />
       </View>
 
     </Page>

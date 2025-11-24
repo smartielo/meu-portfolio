@@ -32,7 +32,7 @@ export function DownloadResume() {
       {({ loading }) => (
         <>
           <FiDownload />
-          {loading ? "Gerando..." : "Baixar CV"}
+          {loading ? "Gerando..." : "Gerar CV"}
         </>
       )}
     </PDFDownloadLink>

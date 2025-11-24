@@ -3,7 +3,7 @@ export interface Project {
   title: string;
   description: string;
   tags: string[];
-  repoLink: string;
+  repoLink?: string;
   demoLink?: string;
   image: string;
 }
@@ -24,6 +24,13 @@ export interface Experience {
   company: string;
   period: string;
   description?: string;
+}
+
+export interface Course {
+  title: string;
+  institution: string;
+  duration: string;
+  link?: string; // Link para o certificado (usaremos no futuro botão do site)
 }
 
 export const profileData = {
@@ -62,15 +69,15 @@ export const profileData = {
       title: "Sangue Bom",
       description: "Site voltado à comunidade com o objetivo de conscientização e informação sobre a doação de sangue na cidade de Bauru. Desenvolvido como Projeto Integrador no SENAC.",
       tags: ["React.JS", "Web", "Utilidade Pública"],
-      repoLink: "https://github.com/smartielo", // Link genérico do seu perfil, depois você coloca o do repo específico
-      image: "https://images.unsplash.com/photo-1615461066841-6116e61058f4?q=80&w=1000&auto=format&fit=crop" // Placeholder temático (Sangue/Saúde)
+      repoLink: "https://github.com/guspavanelli/projetointegrador",
+      image: "/projects/sangue-bom.png"
     },
     {
       title: "Guiar. LTDA",
       description: "Criação de uma empresa e um produto (kit didático de transmissão de forças) para o TCC técnico do CTI Bauru.",
       tags: ["Gestão de Projeto", "Empreendedorismo", "Mecânica"],
-      repoLink: "https://drive.google.com/file/d/1zJK0n4TboYOtueZxFvzIoVErfl6iO8Ze/view?usp=sharing",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop" // Placeholder temático (Engenharia)
+      
+      image: "/projects/guiar-ltda.png"
     }
   ] as Project[],
 
@@ -113,5 +120,25 @@ export const profileData = {
       company: "Concilig",
       period: "Março 2023 - Maio 2023"
     }
-  ] as Experience[]
+  ] as Experience[],
+
+  courses: [
+    {
+      title: "Big Data e Analytics",
+      institution: "FIAP",
+      duration: "60h",
+      link: "https://drive.google.com/file/d/1_mTVRkW70djDoRXHpTPhprDKUZ6dh94t/view?usp=sharing" 
+    },
+    {
+      title: "Python",
+      institution: "FIAP",
+      duration: "12h"
+    },
+    {
+      title: "Git e GitHub para Iniciantes",
+      institution: "Udemy",
+      duration: "5h"
+    }
+  ] as Course[]
 };
+
