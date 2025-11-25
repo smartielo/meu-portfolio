@@ -4,6 +4,9 @@ import { Montserrat } from "next/font/google"; // Importando a fonte
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { ScrollToTop } from "../components/ui/ScrollToTop";
+import { ShareFloating } from "../components/ui/ShareFloating";
+import { ScreenshotListener } from "../components/ui/ScreenshotListener";
+
 
 // Configuração da fonte
 const montserrat = Montserrat({ 
@@ -45,6 +48,9 @@ export default function RootLayout({
     <html lang="pt-BR" className="scroll-smooth">
       <body className={`${montserrat.variable} font-sans bg-gray-950 text-white antialiased`}>
         {children}
+        <ShareFloating />        {/* Botão de Compartilhar (Canto esquerdo) */}
+        <ScreenshotListener />   {/* Detector de Print */}
+        <ScrollToTop />          {/* Botão de Subir (Canto direito) */}
         <ScrollToTop />
         <Analytics />
       </body>

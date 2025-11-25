@@ -1,5 +1,5 @@
 // src/components/pdf/ResumeDocument.tsx
-import { Page, Text, View, Document, StyleSheet, Link } from "@react-pdf/renderer";
+import { Page, Text, View, Document, StyleSheet, Link, Image } from "@react-pdf/renderer";
 import { profileData } from "@/data/profile";
 
 const colors = {
@@ -27,13 +27,22 @@ const styles = StyleSheet.create({
     marginTop: -50,
     marginHorizontal: -50, 
     paddingTop: 60, 
-    // MUDANÇA AQUI: Aumentei de 50 para 80 para dar o respiro lateral
     paddingHorizontal: 80, 
     marginBottom: 20,
     flexDirection: "column", 
     alignItems: "flex-start" 
   },
   
+  // ESTILO DO QR CODE
+  qrCode: {
+    position: 'absolute',
+    top: 35, 
+    right: 40,
+    width: 50,
+    height: 50,
+    zIndex: 100 // Garante prioridade visual
+  },
+
   headerName: { fontSize: 26, fontWeight: "bold", color: colors.white, textTransform: "uppercase", letterSpacing: 1 },
   headerRole: { fontSize: 12, color: "#BFDBFE", marginTop: 4, fontWeight: "medium" },
   headerContact: { flexDirection: "row", flexWrap: "wrap", gap: 15, marginTop: 15 },
@@ -97,12 +106,18 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   footerText: { color: colors.textLight, fontSize: 8 }
+  
 });
 
-export const ResumeDocument = () => (
+interface ResumeDocumentProps {
+  qrCodeUrl?: string;
+}
+
+export const ResumeDocument = ({ qrCodeUrl }: ResumeDocumentProps) => (
   <Document>
     <Page size="A4" style={styles.page}>
       
+      {/* Header Fixo (Páginas 2+) */}
       <View style={styles.smallHeader} fixed>
         <Text style={styles.smallHeaderText} render={({ pageNumber }) => (
           pageNumber > 1 ? `${profileData.name} - Currículo` : ''
@@ -112,6 +127,7 @@ export const ResumeDocument = () => (
         )} />
       </View>
 
+      {/* Cabeçalho Azul Principal */}
       <View style={styles.header}>
         <Text style={styles.headerName}>{profileData.name}</Text>
         <Text style={styles.headerRole}>{profileData.role}</Text>
@@ -220,6 +236,12 @@ export const ResumeDocument = () => (
           `${pageNumber} / ${totalPages}`
         )} fixed />
       </View>
+
+      {/* --- MUDANÇA CRÍTICA --- */}
+      {/* O QR Code agora é o ÚLTIMO elemento, para ser desenhado POR CIMA do header azul */}
+      {qrCodeUrl && (
+        <Image src={qrCodeUrl} style={styles.qrCode} />
+      )}
 
     </Page>
   </Document>

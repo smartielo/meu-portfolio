@@ -6,14 +6,20 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import { ResumeDocument } from "@/components/pdf/ResumeDocument";
 import { FiDownload, FiLoader, FiCheckCircle } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
+import QRCode from "qrcode";
 
 export function DownloadResume() {
   const [isClient, setIsClient] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [qrCodeUrl, setQrCodeUrl] = useState("");
 
   useEffect(() => {
     setIsClient(true);
+    // Gera o QR Code assim que o site carrega
+    QRCode.toDataURL("https://www.gabrielmartielo.com.br")
+      .then((url) => setQrCodeUrl(url))
+      .catch((err) => console.error(err));
   }, []);
 
   const handleDownloadStart = () => {
@@ -64,13 +70,14 @@ export function DownloadResume() {
         Fica escondido (hidden) e só é acionado pelo JavaScript
       */}
       <div id="hidden-resume-downloader" className="hidden">
-        <PDFDownloadLink
-          document={<ResumeDocument />}
-          fileName="Curriculo_Gabriel_Martielo.pdf"
-        >
-          {/* O texto aqui não importa pois está escondido */}
-          <button>Download Real</button>
-        </PDFDownloadLink>
+        {qrCodeUrl && (
+            <PDFDownloadLink
+            document={<ResumeDocument qrCodeUrl={qrCodeUrl} />} // Passando o QR
+            fileName="Curriculo_Gabriel_Martielo.pdf"
+            >
+            <button>Download Real</button>
+            </PDFDownloadLink>
+        )}
       </div>
 
       {/* O OVERLAY (Tela de Loading) */}
