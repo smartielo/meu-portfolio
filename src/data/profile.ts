@@ -152,7 +152,8 @@ export const profileData = {
     {
       title: "Python",
       institution: "FIAP",
-      duration: "12h"
+      duration: "80h",
+      link: "https://drive.google.com/file/d/1XBLbEDoZ2zB5hi2FQTI1837iT9ImBm-y/view?usp=sharing" 
     },
     {
       title: "Git e GitHub para Iniciantes",
