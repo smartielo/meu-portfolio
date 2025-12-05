@@ -1,9 +1,22 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   images: {
-    domains: ['images.unsplash.com', 'plus.unsplash.com'], // Permitindo Unsplash
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'plus.unsplash.com',
+      },
+    ],
   },
-  reactcompiler: true
+  experimental: {
+    // @ts-expect-error - Ignora o erro de tipo pois reactCompiler é uma feature nova
+    reactCompiler: true,
+  },
 };
 
 export default nextConfig;

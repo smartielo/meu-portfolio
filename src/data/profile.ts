@@ -79,6 +79,20 @@ export const profileData = {
       image: "/projects/sangue-bom.png"
     },
     {
+      title: "F1 Telemetry Analytics",
+      description: "Análise de dados de telemetria da Fórmula 1 utilizando Python. O projeto processa dados de corridas para gerar visualizações de velocidade, aceleração e comparação entre pilotos.",
+      tags: ["Python", "Data Science", "Pandas", "Matplotlib"],
+      repoLink: "https://github.com/smartielo/F1-Telemetry-Viz",
+      image: "/projects/f1telemetry.png" // Precisa adicionar esta imagem
+    },
+    {
+      title: "Portfólio Interativo",
+      description: "Este site que você está navegando! Desenvolvido com as tecnologias mais modernas do ecossistema React, focado em performance, animações fluídas e geração dinâmica de documentos PDF.",
+      tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "React-PDF"],
+      repoLink: "https://github.com/smartielo/meu-portfolio",
+      image: "/projects/home-page.png" // Usando a mesma capa do site
+    },
+    {
       title: "Guiar. LTDA",
       description: "Criação de uma empresa e um produto (kit didático de transmissão de forças) para o TCC técnico do CTI Bauru.",
       tags: ["Gestão de Projeto", "Empreendedorismo", "Mecânica"],
@@ -148,8 +162,8 @@ export const profileData = {
   ] as Course[],
 
   studying: [
-    { label: "Kotlin", level: 75, color: "#7F52FF" }, // Roxo Kotlin
-    { label: "Python", level: 60, color: "#3776AB" }, // Azul Python
+    { label: "Python", level: 75, color: "#3776AB" }, // Azul Python
+    { label: "Kotlin", level: 60, color: "#7F52FF" }, // Roxo Kotlin
     { label: "Docker", level: 40, color: "#2496ED" }, // Azul Docker
     { label: "Cloud (AWS)", level: 30, color: "#FF9900" }, // Laranja AWS
   ] as TechProgress[],
@@ -177,16 +191,16 @@ export const profileData = {
     {
       label: "Games",
       emoji: "🎮",
-      items: ["Minecraft", "Forza Horizon 5", "EA FC"] // Seus jogos favoritos
+      items: ["Minecraft", "Forza Horizon 5", "EA FC"] 
     },
     {
       label: "Música",
       emoji: "🎧",
-      items: ["Pagode", "Eletrônica", "Rap/Hip-Hop", "Sertanejo", "FlashBack's"] // Seus gostos musicais
+      items: ["Pagode", "Eletrônica", "Rap/Hip-Hop", "Sertanejo", "FlashBack's"] 
     },
     {
       label: "Esportes",
-      emoji: "⚽", // Ou 🏋️‍♂️
+      emoji: "⚽", 
       items: ["Futebol", "Basquete", "Vôlei", "Futebol Americano", "Corrida"] 
     }
   ]
