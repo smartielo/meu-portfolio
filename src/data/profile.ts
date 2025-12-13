@@ -42,7 +42,7 @@ export interface TechProgress {
 export const profileData = {
   name: "Gabriel Martielo Da Silva",
   role: "Estudante de Ciência da Computação",
-  headline: "Transicionando da área mecânica para a tecnologia da informação.",
+  headline: "Estudante de Ciência da Computação focado em Desenvolvimento Full Stack e Análise de Dados.",
   location: "Bauru, São Paulo, Brasil",
   email: "dev.gabrielmartielo@gmail.com",
   email2: "gabrielmartielo3214@gmail.com",
