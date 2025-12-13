@@ -111,11 +111,6 @@ export const profileData = {
       institution: "Colégio Técnico Industrial (CTI Bauru)",
       degree: "Ensino Médio e Técnico em Mecânica",
       period: "Fevereiro 2020 - Dezembro 2022"
-    },
-    {
-      institution: "SENAC Bauru",
-      degree: "Desenvolvedor Full Stack & React.JS",
-      period: "Cursos Livres"
     }
   ] as Education[],
 
@@ -144,22 +139,35 @@ export const profileData = {
 
   courses: [
     {
+      title: "Desenvolvedor Full Stack",
+      institution: "SENAC",
+      duration: "388h",
+      link: "https://drive.google.com/file/d/16OQsJdHGc4x3St7k5tOnUlWOcHaraOIy/view?usp=sharing" 
+    },
+    {
+      title: "React.JS - Interfaces Front-End",
+      institution: "SENAC",
+      duration: "40h",
+      link: "https://drive.google.com/file/d/186EBLYT1A7x17EGzXgaGs2vvGAQfWK54/view?usp=sharing" 
+    },
+    {
       title: "Big Data e Analytics",
       institution: "FIAP",
       duration: "60h",
-      link: "https://drive.google.com/file/d/1_mTVRkW70djDoRXHpTPhprDKUZ6dh94t/view?usp=sharing" 
+      link: "https://on.fiap.com.br/local/nanocourses/gerar_certificado.php?chave=42974a8aff36a52e60122956262ac331&action=view" 
     },
     {
       title: "Python",
       institution: "FIAP",
       duration: "80h",
-      link: "https://drive.google.com/file/d/1XBLbEDoZ2zB5hi2FQTI1837iT9ImBm-y/view?usp=sharing" 
+      link: "https://on.fiap.com.br/local/nanocourses/gerar_certificado.php?chave=fe4800f3abaf552d0f8d47cdad69321d&action=view" 
     },
     {
-      title: "Git e GitHub para Iniciantes",
-      institution: "Udemy",
-      duration: "5h"
-    }
+      title: "Business Intelligence - BI",
+      institution: "FIAP",
+      duration: "40h",
+      link: "https://on.fiap.com.br/local/nanocourses/gerar_certificado.php?chave=4ac095f6e4263a6d9f16f84816beb897&action=view" 
+    },
   ] as Course[],
 
   studying: [
