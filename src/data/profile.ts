@@ -85,21 +85,21 @@ export const profileData = {
       description: "Análise de dados de telemetria da Fórmula 1 utilizando Python. O projeto processa dados de corridas para gerar visualizações de velocidade, aceleração e comparação entre pilotos.",
       tags: ["Python", "Data Science", "Pandas", "Matplotlib"],
       repoLink: "https://github.com/smartielo/F1-Telemetry-Viz",
-      image: "/projects/f1telemetry.png" // Precisa adicionar esta imagem
+      image: "/projects/f1telemetry.png" 
     },
     {
       title: "Portfólio Interativo",
       description: "Este site que você está navegando! Desenvolvido com as tecnologias mais modernas do ecossistema React, focado em performance, animações fluídas e geração dinâmica de documentos PDF.",
       tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "React-PDF"],
       repoLink: "https://github.com/smartielo/meu-portfolio",
-      image: "/projects/portfolio-home.png" // Usando a mesma capa do site
+      image: "/projects/portfolio-home.png" 
     },
     {
       title: "Sistema de Gestão - Centro Socioeducativo Irmã Adelaide",
       description: "Este projeto é uma plataforma web completa para a gestão do Centro Socioeducativo Irmã Adelaide. O sistema digitaliza todo o processo de inscrição, acompanhamento e gestão de participantes, substituindo fichas de papel por um fluxo digital seguro e eficiente.",
       tags: ["Python", "JavaScript", "Tailwind CSS", "React.JS", "MySQL"],
       repoLink: "https://github.com/smartielo/trabalho_socio",
-      image: "/projects/home-page.png" // Usando a mesma capa do site
+      image: "/projects/home-page.png" 
     },
     {
       title: "Guiar. LTDA",
