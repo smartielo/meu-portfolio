@@ -203,7 +203,7 @@ export const profileData = {
     ]
   },
 
-  personalImage: "/projects/me.png",
+  personalImage: "/projects/imagem-portfolio.jpg",
 
   hobbies: [
     {

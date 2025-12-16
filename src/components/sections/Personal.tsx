@@ -145,7 +145,7 @@ export function Personal() {
                transition={{ duration: 0.6, delay: 0.3 }}
                className="relative w-full flex-grow rounded-2xl overflow-hidden border border-white/10 shadow-2xl group min-h-[300px]"
             >
-               <div className="absolute inset-0 bg-blue-600/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+               <div className="absolute inset-0 group-hover:bg-transparent transition-colors duration-500 z-10" />
                
                <Image
                   src={profileData.personalImage || ""} 
