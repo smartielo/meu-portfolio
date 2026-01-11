@@ -102,6 +102,20 @@ export const profileData = {
       image: "/projects/home-page.png" 
     },
     {
+      title: "Gerenciador de Investimentos",
+      description: "Um dashboard financeiro interativo desenvolvido em Python para gerenciar, balancear e acompanhar a evolução de uma carteira de investimentos (Ações e FIIs).",
+      tags: ["Python", "MySQL", "Pandas", "Plotly"],
+      repoLink: "https://github.com/smartielo/Gerenciador-Portfolio-Financeiro",
+      image: "/projects/financeiro.png" 
+    },
+    {
+      title: "F1 Telemetry Hub",
+      description: "O F1 Telemetry Hub é uma aplicação web interativa que permite visualizar e analisar dados de telemetria de corridas reais da Fórmula 1",
+      tags: ["Python", "Pandas", "FastF1", "FastAPI"],
+      repoLink: "https://github.com/smartielo/F1-Web-Python",
+      image: "/projects/f1-telemetry-hub.png" 
+    },
+    {
       title: "Guiar. LTDA",
       description: "Criação de uma empresa e um produto (kit didático de transmissão de forças) para o TCC técnico do CTI Bauru.",
       tags: ["Gestão de Projeto", "Empreendedorismo", "Mecânica"],
