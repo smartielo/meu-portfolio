@@ -106,7 +106,7 @@ export const profileData = {
       description: "Um dashboard financeiro interativo desenvolvido em Python para gerenciar, balancear e acompanhar a evolução de uma carteira de investimentos (Ações e FIIs).",
       tags: ["Python", "MySQL", "Pandas", "Plotly"],
       repoLink: "https://github.com/smartielo/Gerenciador-Portfolio-Financeiro",
-      image: "/projects/financeiro.png" 
+      image: "/projects/gestao-investimento.png" 
     },
     {
       title: "F1 Telemetry Hub",
