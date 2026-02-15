@@ -1,4 +1,3 @@
-// src/components/layout/Navbar.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -6,8 +5,16 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi"; 
 import { DownloadResume } from "@/components/ui/DownloadResume";
+import { usePathname } from 'next/navigation';
 
 export function Navbar() {
+  const pathname = usePathname(); // 1. Pegamos a rota atual
+  
+  // 2. Lógica para esconder a Navbar na página de Links
+  if (pathname === "/links") {
+    return null;
+  }
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -30,7 +37,6 @@ export function Navbar() {
   return (
     <>
       {/* 1. O OVERLAY (Fundo Escuro e Desfocado) */}
-      {/* Ele cobre o site inteiro quando o menu abre para dar foco */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -38,13 +44,13 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            onClick={() => setIsMobileMenuOpen(false)} // Clicar no fundo fecha o menu
+            onClick={() => setIsMobileMenuOpen(false)}
             className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
           />
         )}
       </AnimatePresence>
 
-      {/* 2. A BARRA DE NAVEGAÇÃO (Fica por cima de tudo, z-50) */}
+      {/* 2. A BARRA DE NAVEGAÇÃO */}
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -88,12 +94,12 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Menu Mobile (Dropdown que empurra o conteúdo) */}
+        {/* Menu Mobile (Dropdown) */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div 
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }} // Volta a ser auto (apenas o tamanho necessário)
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden overflow-hidden"
             >
