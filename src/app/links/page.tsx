@@ -12,25 +12,25 @@ const links = [
   },
   {
     title: "Fale comigo no WhatsApp",
-    url: "https://wa.me/5514999999999", // Coloque seu número real aqui
+    url: "https://wa.me/5514991255559", // Coloque seu número real aqui
     icon: MessageCircle,
     color: "bg-green-500",
   },
   {
     title: "LinkedIn",
-    url: "https://linkedin.com/in/seu-linkedin",
+    url: "https://linkedin.com/in/gabrielmartielo",
     icon: Linkedin,
     color: "bg-blue-700",
   },
   {
     title: "GitHub",
-    url: "https://github.com/seu-github",
+    url: "https://github.com/smartielo",
     icon: Github,
     color: "bg-gray-800",
   },
   {
     title: "Instagram",
-    url: "https://instagram.com/seu-insta",
+    url: "https://instagram.com/gmartielos",
     icon: Instagram,
     color: "bg-pink-600",
   },
