@@ -1,4 +1,5 @@
 import { DiMysql } from "react-icons/di";
+import { Layout, Database, LineChart, Smartphone } from "lucide-react";
 
 // src/data/profile.ts
 export interface Project {
@@ -59,8 +60,8 @@ export const profileData = {
 
   skills: [
     {
-      category: "Front-end",
-      skills: ["React.JS", "JavaScript", "HTML/CSS"] 
+      category: "Programação & Frameworks",
+      skills: ["Python","Dart/Flutter", "React.JS/.tsx", "JavaScript", "C#/.net", "C", "Kotlin","HTML/CSS"] 
     },
     {
       category: "Soft Skills & Outros",
@@ -68,7 +69,7 @@ export const profileData = {
     },
     {
       category: "Ferramentas",
-      skills: ["Git", "GitHub", "VS Code"]
+      skills: ["Git", "GitHub", "VS Code", "Android Studio", "Postman", "DataSpell", "Trello", "Figma"],
     }
   ] as SkillCategory[],
 
@@ -188,7 +189,7 @@ export const profileData = {
 
   studying: [
     { label: "Python", level: 75, color: "#3776AB" }, // Azul Python
-    { label: "Kotlin", level: 60, color: "#7F52FF" }, // Roxo Kotlin
+    { label: "Dart/Flutter", level: 60, color: "#7F52FF" }, // Roxo Dart
     { label: "Docker", level: 40, color: "#2496ED" }, // Azul Docker
     { label: "Cloud (AWS)", level: 30, color: "#FF9900" }, // Laranja AWS
   ] as TechProgress[],
@@ -199,7 +200,6 @@ export const profileData = {
     description: "Meu cantinho de estudos e desenvolvimento. Focado em produtividade e conforto.",
     specs: [
       "S23 Ultra",
-      "Alexa Gen4",
       "ASUS TUF F15",
       "Monitor AOC Gaming 27pol",
       "Teclado Mecânico Redragon",
@@ -207,6 +207,7 @@ export const profileData = {
       "Fone KZ ZSN Pro X",
       "HeadPhone QCY H2",
       "Controle GameSir Nova Lite",
+      "Alexa Gen4",
     ]
   },
 

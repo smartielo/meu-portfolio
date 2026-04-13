@@ -23,6 +23,9 @@ export function About() {
             <h2 className="text-3xl font-bold text-white mb-6">
               Meu Setup <span className="text-blue-500">.</span>
             </h2>
+            <p className="text-gray-400 mb-8">
+              Meu cantinho de trabalho, onde desenvolvo minhas ideias.
+            </p>
             
             {/* Foto do Setup com Moldura Neon */}
             <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
