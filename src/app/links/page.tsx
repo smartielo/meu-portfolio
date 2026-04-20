@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Mail, Globe, MessageCircle, Instagram } from "lucide-react";
+import { Github, Linkedin, Mail, Globe, MessageCircle, Instagram, Camera } from "lucide-react";
 
 // Dados dos links (Você pode mover para um arquivo separado depois se quiser)
 const links = [
@@ -11,10 +11,10 @@ const links = [
     color: "bg-blue-500",
   },
   {
-    title: "Fale comigo no WhatsApp",
-    url: "https://wa.me/5514991255559", // Coloque seu número real aqui
-    icon: MessageCircle,
-    color: "bg-green-500",
+    title: "VSCO",
+    url: "https://vsco.co/gbehindthescenes", // Coloque seu link do VSCO aqui
+    icon: Camera, 
+    color: "bg-neutral-800", // Tom escuro/cinza que combina com o VSCO
   },
   {
     title: "LinkedIn",
