@@ -110,6 +110,13 @@ export const profileData = {
       image: "/projects/f1-telemetry-hub.png" 
     },
     {
+      title: "TR. Victor Guincho e Transportes",
+      description: "Criação de um site institucional para a empresa de transporte TR. Victor Guincho, apresentando seus serviços, área de atuação e informações de contato para clientes em potencial.",
+      tags: ["Desenvolvimento Web", "Empreendedorismo"],
+      repoLink: "https://trvictorguincho.com.br/",
+      image: "/projects/trvictor-logo1.jpg"
+    },
+    {
       title: "Guiar. LTDA",
       description: "Criação de uma empresa e um produto (kit didático de transmissão de forças) para o TCC técnico do CTI Bauru.",
       tags: ["Gestão de Projeto", "Empreendedorismo", "Mecânica"],
