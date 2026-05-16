@@ -82,11 +82,11 @@ export const profileData = {
       image: "/projects/sangue-bom.png"
     },
     {
-      title: "F1 Telemetry Analytics",
-      description: "Análise de dados de telemetria da Fórmula 1 utilizando Python. O projeto processa dados de corridas para gerar visualizações de velocidade, aceleração e comparação entre pilotos.",
-      tags: ["Python", "Data Science", "Pandas", "Matplotlib"],
-      repoLink: "https://github.com/smartielo/F1-Telemetry-Viz",
-      image: "/projects/f1telemetry.png" 
+      title: "Portal Talentos UNISAGRADO (UniStágio)",
+      description: "Uma plataforma web responsiva, interativa e de fácil uso que conecta o ambiente acadêmico ao mercado de trabalho.",
+      tags: ["React.JS", "Vite", "Figma"],
+      repoLink: "https://github.com/smartielo/unistagio",
+      image: "/projects/unistagio.png" 
     },
     {
       title: "Portfólio Interativo",
@@ -108,6 +108,13 @@ export const profileData = {
       tags: ["Python", "Pandas", "FastF1", "FastAPI"],
       repoLink: "https://github.com/smartielo/F1-Web-Python",
       image: "/projects/f1-telemetry-hub.png" 
+    },
+    {
+      title: "F1 Telemetry Analytics",
+      description: "Análise de dados de telemetria da Fórmula 1 utilizando Python. O projeto processa dados de corridas para gerar visualizações de velocidade, aceleração e comparação entre pilotos.",
+      tags: ["Python", "Data Science", "Pandas", "Matplotlib"],
+      repoLink: "https://github.com/smartielo/F1-Telemetry-Viz",
+      image: "/projects/f1telemetry.png" 
     },
     {
       title: "TR. Victor Guincho e Transportes",
@@ -191,6 +198,12 @@ export const profileData = {
       institution: "FIAP",
       duration: "40h",
       link: "https://on.fiap.com.br/local/nanocourses/gerar_certificado.php?chave=4ac095f6e4263a6d9f16f84816beb897&action=view" 
+    },
+    {
+      title: "VII Hack@Day",
+      institution: "Unisagrado",
+      duration: "100h",
+      link: "https://www.linkedin.com/posts/gabrielmartielo_hackatday-unisagrado-desenvolvimentoweb-ugcPost-7461211949259784194-9ve8?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEJoPhkBYgL2HifDZxFYmV6wZdHyftce8-Y" 
     },
   ] as Course[],
 
