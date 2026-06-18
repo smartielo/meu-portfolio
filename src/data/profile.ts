@@ -89,6 +89,13 @@ export const profileData = {
       image: "/projects/unistagio.png" 
     },
     {
+      title: "Detecção de Pneumonia em Raios-X com Deep Learning",
+      description: "Este projeto aplica técnicas de Visão Computacional e Deep Learning para classificar radiografias de tórax, identificando a presença de Pneumonia.",
+      tags: ["Python", "TensorFlow", "Matplotlib", "DataSpell"],
+      repoLink: "https://github.com/smartielo/ml-pneumonia",
+      image: "/projects/mlpneumonia.jpg" 
+    },
+    {
       title: "Portfólio Interativo",
       description: "Este site que você está navegando! Desenvolvido com as tecnologias mais modernas do ecossistema React, focado em performance, animações fluídas e geração dinâmica de documentos PDF.",
       tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "React-PDF"],
