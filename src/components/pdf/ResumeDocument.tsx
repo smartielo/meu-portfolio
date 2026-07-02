@@ -230,7 +230,7 @@ export const ResumeDocument = ({ qrCodeUrl }: ResumeDocumentProps) => (
 
       <View style={styles.footer} fixed>
         <Text style={styles.footerText}>
-          Gerado em {new Date().toLocaleDateString('pt-BR')} via dev.gabrielmartielo.com.br
+          Gerado em {new Date().toLocaleDateString('pt-BR')} via gabrielmartielo.com.br
         </Text>
         <Text style={styles.footerText} render={({ pageNumber, totalPages }) => (
           `${pageNumber} / ${totalPages}`
