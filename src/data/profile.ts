@@ -156,7 +156,7 @@ export const profileData = {
     {
       role: "Estagiário",
       company: "Join4",
-      period: "Agosto 2024 - Julho 2026"
+      period: "Julho 2026 - Atual"
     },
     {
       role: "Técnico de Planejamento",
