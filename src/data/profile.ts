@@ -154,9 +154,14 @@ export const profileData = {
 
   experiences: [
     {
+      role: "Estagiário",
+      company: "Join4",
+      period: "Agosto 2024 - Julho 2026"
+    },
+    {
       role: "Técnico de Planejamento",
       company: "CPFL Energia",
-      period: "Agosto 2024 - Atual"
+      period: "Agosto 2024 - Julho 2026"
     },
     {
       role: "Montador Mecânico",
@@ -167,11 +172,6 @@ export const profileData = {
       role: "Auxiliar de Produção",
       company: "Tilibra",
       period: "Maio 2023 - Março 2024"
-    },
-    {
-      role: "Operador de Telemarketing",
-      company: "Concilig",
-      period: "Março 2023 - Maio 2023"
     }
   ] as Experience[],
 
