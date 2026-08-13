@@ -2,130 +2,70 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { profileData } from "@/data/profile";
-import { FiCpu, FiMonitor } from "react-icons/fi";
+import { TerminalWindow } from "@/components/ui/TerminalWindow";
+import { CinematicSection } from "@/components/layouts/CinematicSection";
 
 export function About() {
   return (
-    <section id="about" className="py-20 relative overflow-hidden bg-black/20">
-      <div className="container mx-auto px-6 relative z-10">
-        
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          
-          {/* COLUNA 1: O Setup (Foto + Specs) */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl font-bold text-white mb-6">
-              Meu Setup <span className="text-blue-500">.</span>
-            </h2>
-            <p className="text-gray-400 mb-8">
-              Meu cantinho de trabalho, onde desenvolvo minhas ideias.
-            </p>
-            
-            {/* Foto do Setup com Moldura Neon */}
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
-              <div className="absolute inset-0 bg-blue-500/10 group-hover:bg-transparent transition-colors z-10" />
-              
-              {/* Imagem Real (Placeholder por enquanto) */}
-              <Image
-                src={profileData.setup.image}
-                alt="Meu Setup"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                // Fallback caso não tenha foto ainda
-                onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                }}
-              />
-              {/* Fallback visual se a imagem falhar */}
-              <div className="absolute inset-0 bg-gray-900 flex items-center justify-center -z-10">
-                 <FiMonitor className="text-6xl text-gray-700" />
-              </div>
-            </div>
-
-            {/* Tags de Specs (Igual ao seu GitHub) */}
-            <div className="mt-6 flex flex-wrap gap-3">
-              {profileData.setup.specs.map((spec, index) => (
-                <div 
-                  key={index}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-gray-800 rounded-lg border border-gray-700 text-sm text-gray-300"
-                >
-                  <FiCpu className="text-blue-400" />
-                  {spec}
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* COLUNA 2: O Gráfico de Estudos (Progress Bars) */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h2 className="text-3xl font-bold text-white mb-2">
-              Aprendizado Atual <span className="text-purple-500">.</span>
-            </h2>
-            <p className="text-gray-400 mb-8">
+    <CinematicSection id="about" className="relative overflow-hidden bg-black/20 py-20">
+      <div className="container relative z-10 mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-2xl"
+        >
+          <TerminalWindow path="~/gabriel/about" title="learning" accent="amber">
+            <p className="mb-6 text-foreground/70">
               Tecnologias que estou explorando e me aprofundando no momento.
             </p>
 
-            <div className="space-y-6">
+            <div className="space-y-6 font-mono">
               {profileData.studying?.map((tech, index) => (
                 <div key={tech.label}>
-                  <div className="flex justify-between mb-2">
-                    <span className="font-semibold text-white">{tech.label}</span>
-                    <span className="text-xs font-mono text-gray-400">{tech.level}%</span>
+                  <div className="mb-2 flex justify-between">
+                    <span className="font-semibold text-phosphor-green">{tech.label}</span>
+                    <span className="text-xs text-foreground/50">{tech.level}%</span>
                   </div>
-                  
-                  {/* Barra de Fundo */}
-                  <div className="h-3 w-full bg-gray-800 rounded-full overflow-hidden">
-                    {/* Barra Colorida Animada */}
+
+                  <div className="h-2.5 w-full overflow-hidden border border-phosphor-green/10 bg-black/30">
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${tech.level}%` }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1, delay: 0.5 + (index * 0.1), ease: "easeOut" }}
-                      className="h-full rounded-full relative"
-                      style={{ backgroundColor: tech.color }}
+                      transition={{ duration: 1, delay: 0.5 + index * 0.1, ease: "easeOut" }}
+                      className="relative h-full bg-phosphor-amber"
                     >
-                      {/* Brilho na ponta da barra */}
-                      <div className="absolute right-0 top-0 bottom-0 w-1 bg-white/50 shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+                      <div className="absolute right-0 top-0 bottom-0 w-1 bg-white/60 shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
                     </motion.div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Cardzinho estilo GitHub "Most Used" decorativo */}
-            <div className="mt-8 p-4 bg-gray-900/50 rounded-xl border border-white/5">
-              <div className="flex gap-2 mb-2">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
+            {/* Bloco decorativo estilo terminal */}
+            <div className="mt-8 border border-phosphor-green/10 bg-black/30 p-4">
+              <div className="mb-2 flex gap-2">
+                <div className="h-3 w-3 rounded-full bg-red-500/70" />
+                <div className="h-3 w-3 rounded-full bg-phosphor-amber/70" />
+                <div className="h-3 w-3 rounded-full bg-phosphor-green/70" />
               </div>
-              <p className="text-base md:text-lg font-mono text-gray-300">
-                <span className="text-green-400 mr-2">$</span>
-                <span className="text-purple-400">while</span>(alive) &#123; 
-                <br className="md:hidden" /> 
-                <span className="pl-4 md:pl-0"> 
-                  <span className="text-blue-400">study</span>(); <span className="text-blue-400">code</span>(); 
+              <p className="font-mono text-base text-foreground/70 md:text-lg">
+                <span className="mr-2 text-phosphor-green">$</span>
+                <span className="text-phosphor-amber">while</span>(alive) &#123;
+                <br className="md:hidden" />
+                <span className="pl-4 md:pl-0">
+                  <span className="text-phosphor-green">study</span>(); <span className="text-phosphor-green">code</span>();
                 </span>
                 &#125;
-                <span className="animate-pulse inline-block w-2 h-5 ml-1 bg-gray-500 align-middle" /> {/* Cursor piscando */}
+                <span className="animate-blink ml-1 inline-block h-5 w-2 bg-phosphor-green align-middle" />
               </p>
             </div>
-
-          </motion.div>
-
-        </div>
+          </TerminalWindow>
+        </motion.div>
       </div>
-    </section>
+    </CinematicSection>
   );
 }

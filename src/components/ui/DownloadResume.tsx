@@ -47,23 +47,24 @@ export function DownloadResume() {
 
   if (!isClient) {
     return (
-      <button className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-500 bg-gray-200 rounded-full cursor-wait">
-        <FiLoader className="animate-spin" /> Carregando...
+      <button className="flex items-center gap-2 border border-phosphor-green/20 px-4 py-1.5 font-mono text-xs text-phosphor-green/40 cursor-wait">
+        <FiLoader className="animate-spin" /> carregando...
       </button>
     );
   }
 
   return (
     <>
-      {/* BOTÃO VISÍVEL (O Gatilho) 
-        Este botão NÃO baixa nada, apenas inicia a função handleDownloadStart 
+      {/* BOTÃO VISÍVEL (O Gatilho)
+        Este botão NÃO baixa nada, apenas inicia a função handleDownloadStart
       */}
       <button
+        id="download-resume-trigger"
         onClick={handleDownloadStart}
-        className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-black bg-white rounded-full hover:bg-gray-200 hover:scale-105 transition-all"
+        className="flex items-center gap-2 border border-phosphor-green/30 px-3 py-1.5 font-mono text-xs text-phosphor-green transition-colors hover:border-phosphor-amber hover:text-phosphor-amber"
       >
         <FiDownload />
-        Baixar CV
+        [ baixar cv ]
       </button>
 
       {/* BOTÃO INVISÍVEL (O Verdadeiro Download) 
@@ -87,10 +88,10 @@ export function DownloadResume() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-md"
           >
-            <div className="text-center p-8 bg-gray-900 border border-white/10 rounded-2xl shadow-2xl flex flex-col items-center min-w-[300px]">
-              
+            <div className="flex min-w-[300px] flex-col items-center border border-phosphor-green/20 bg-crt-panel p-8 text-center font-mono shadow-2xl">
+
               {isGenerating ? (
                 <>
                   <motion.div
@@ -98,11 +99,11 @@ export function DownloadResume() {
                     transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
                     className="mb-4"
                   >
-                    <FiLoader className="text-5xl text-blue-500" />
+                    <FiLoader className="text-5xl text-phosphor-green" />
                   </motion.div>
-                  <h3 className="text-xl font-bold text-white mb-2">Gerando PDF...</h3>
-                  <p className="text-gray-400 text-sm">
-                    Compilando a versão mais recente do seu currículo.
+                  <h3 className="mb-2 text-lg font-bold text-phosphor-green">{"> "}gerando pdf...</h3>
+                  <p className="text-sm text-foreground/60">
+                    compilando a versão mais recente do seu currículo.
                   </p>
                 </>
               ) : (
@@ -112,11 +113,11 @@ export function DownloadResume() {
                     animate={{ scale: 1 }}
                     className="mb-4"
                   >
-                    <FiCheckCircle className="text-5xl text-green-500" />
+                    <FiCheckCircle className="text-5xl text-phosphor-amber" />
                   </motion.div>
-                  <h3 className="text-xl font-bold text-white mb-2">Pronto!</h3>
-                  <p className="text-gray-400 text-sm">
-                    O download iniciará automaticamente.
+                  <h3 className="mb-2 text-lg font-bold text-phosphor-amber">[ pronto! ]</h3>
+                  <p className="text-sm text-foreground/60">
+                    o download iniciará automaticamente.
                   </p>
                 </>
               )}

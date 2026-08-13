@@ -1,6 +1,7 @@
 // src/app/page.tsx
 import { Navbar } from "@/components/layouts/Navbar";
 import { Hero } from "@/components/sections/Hero";
+import { Achievements } from "@/components/sections/Achievements";
 import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
 import { About } from "@/components/sections/About";
@@ -10,11 +11,12 @@ import { Analytics } from "@vercel/analytics/next"
 
 export default function Home() {
   return (
-    <main className="bg-gray-950 min-h-screen text-white">
+    <main className="bg-background min-h-screen text-foreground">
       <Navbar />
       <Hero />
       <Skills />
       <Projects />
+      <Achievements />
       <About />
       <Personal />
       <Contact />

@@ -3,42 +3,34 @@
 
 import { motion } from "framer-motion";
 import { profileData } from "@/data/profile";
-import { FiCode, FiDatabase, FiTool } from "react-icons/fi"; // Ícones para ilustrar
+import { FiCode, FiDatabase, FiTool } from "react-icons/fi";
+import { CinematicSection } from "@/components/layouts/CinematicSection";
 
 export function Skills() {
-  // Mapeando ícones para categorias (opcional, mas fica bonito)
-  const getIcon = (category: string) => {
-    if (category.includes("Front-end")) return <FiCode className="text-3xl text-blue-400" />;
-    if (category.includes("Back-end")) return <FiDatabase className="text-3xl text-purple-400" />;
-    return <FiTool className="text-3xl text-green-400" />;
+  const getIcon = (index: number) => {
+    if (index === 0) return <FiCode className="text-2xl text-phosphor-green" />;
+    if (index === 1) return <FiDatabase className="text-2xl text-phosphor-amber" />;
+    return <FiTool className="text-2xl text-phosphor-green" />;
   };
 
   return (
-    <section id="skills" className="py-32 relative overflow-hidden">
-      {/* NOTA: Removi o bg-gray-900. Agora o fundo é transparente, 
-          aproveitando o fundo global dark do site.
-      */}
-
-      <div className="container mx-auto px-6 relative z-10">
-        
-        {/* Título da Seção */}
+    <CinematicSection id="skills" className="relative overflow-hidden py-32">
+      <div className="container relative z-10 mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.5 }}
-          className="mb-16"
+          className="mb-16 font-mono"
         >
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Habilidades <span className="text-blue-500">.</span>
-          </h2>
-          <p className="text-gray-400 max-w-xl">
+          <p className="mb-2 text-phosphor-green/60">{"> "}ls ~/gabriel/skills</p>
+          <h2 className="text-3xl font-bold text-phosphor-green md:text-4xl">Habilidades</h2>
+          <p className="mt-2 max-w-xl text-foreground/70">
             Um mix de tecnologias para criar interfaces bonitas e processar dados complexos.
           </p>
         </motion.div>
 
-        {/* Grid de Categorias */}
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 font-mono md:grid-cols-3">
           {profileData.skills.map((category, index) => (
             <motion.div
               key={category.category}
@@ -46,29 +38,22 @@ export function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              // AQUI ESTÁ A MÁGICA: Glassmorphism
-              className="group relative p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 hover:border-blue-500/30 transition-all duration-300"
+              className="group border border-phosphor-green/15 bg-crt-panel/40 p-6 transition-colors hover:border-phosphor-green/40"
             >
-              
-              {/* Cabeçalho do Card */}
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 rounded-lg bg-black/30 border border-white/5">
-                  {getIcon(category.category)}
+              <div className="mb-5 flex items-center gap-3">
+                <div className="rounded border border-phosphor-green/10 bg-black/30 p-2.5">
+                  {getIcon(index)}
                 </div>
-                <h3 className="text-xl font-bold text-white">
-                  {category.category}
-                </h3>
+                <h3 className="text-base font-bold text-phosphor-green">{category.category}</h3>
               </div>
 
-              {/* Lista de Skills (Tags) */}
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1.5 text-sm text-gray-300 bg-black/20 rounded-md border border-white/5 
-                               group-hover:text-white group-hover:border-white/20 transition-colors"
+                    className="border border-phosphor-green/15 bg-black/20 px-2.5 py-1 text-xs text-foreground/70 transition-colors group-hover:border-phosphor-green/30 group-hover:text-foreground"
                   >
-                    {skill}
+                    [{skill}]
                   </span>
                 ))}
               </div>
@@ -76,6 +61,6 @@ export function Skills() {
           ))}
         </div>
       </div>
-    </section>
+    </CinematicSection>
   );
 }

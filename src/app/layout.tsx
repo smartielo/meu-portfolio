@@ -1,18 +1,27 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google"; // Importando a fonte
+import { Montserrat, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { ScrollToTop } from "../components/ui/ScrollToTop";
 import { ShareFloating } from "../components/ui/ShareFloating";
 import { ScreenshotListener } from "../components/ui/ScreenshotListener";
+import { LenisProvider } from "@/components/providers/LenisProvider";
+import { CommandPaletteProvider } from "@/components/providers/CommandPaletteProvider";
+import { CommandPalette } from "@/components/ui/CommandPalette";
+import { SectionDock } from "@/components/layouts/SectionDock";
+import { ConsoleEasterEgg } from "@/components/ui/ConsoleEasterEgg";
 
-
-// Configuração da fonte
-const montserrat = Montserrat({ 
+const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
-  weight: ["400", "500", "600", "700"], // Pesos que vamos usar
+  weight: ["400", "500", "600", "700"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -45,13 +54,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className="scroll-smooth">
-      <body className={`${montserrat.variable} font-sans bg-gray-950 text-white antialiased`}>
-        {children}
+    <html lang="pt-BR">
+      <body className={`${montserrat.variable} ${jetbrainsMono.variable} font-sans bg-background text-foreground antialiased`}>
+        <div className="noise-overlay crt-scanlines fixed inset-0 z-[1] pointer-events-none" aria-hidden />
+        <LenisProvider>
+          <CommandPaletteProvider>
+            {children}
+            <SectionDock />
+            <CommandPalette />
+          </CommandPaletteProvider>
+        </LenisProvider>
         <ShareFloating />        {/* Botão de Compartilhar (Canto esquerdo) */}
         <ScreenshotListener />   {/* Detector de Print */}
         <ScrollToTop />          {/* Botão de Subir (Canto direito) */}
-        <ScrollToTop />
+        <ConsoleEasterEgg />
         <Analytics />
       </body>
     </html>

@@ -37,7 +37,7 @@ export function ScrollToTop() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 p-3 rounded-full bg-blue-600 text-white shadow-lg shadow-blue-600/30 hover:bg-blue-700 hover:scale-110 transition-all"
+          className="fixed bottom-8 right-8 z-40 rounded-full border border-phosphor-green/30 bg-crt-panel p-3 text-phosphor-green shadow-lg shadow-phosphor-green/10 transition-all hover:scale-110 hover:border-phosphor-amber hover:text-phosphor-amber"
           aria-label="Voltar ao topo"
         >
           <FiArrowUp className="text-xl" />

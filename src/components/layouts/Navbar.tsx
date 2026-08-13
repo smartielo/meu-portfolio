@@ -1,128 +1,62 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { FiMenu, FiX } from "react-icons/fi"; 
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { DownloadResume } from "@/components/ui/DownloadResume";
-import { usePathname } from 'next/navigation';
+import { useCommandPalette } from "@/components/providers/CommandPaletteProvider";
+import { useLenis } from "@/components/providers/LenisProvider";
 
 export function Navbar() {
-  const pathname = usePathname(); // 1. Pegamos a rota atual
-  
-  // 2. Lógica para esconder a Navbar na página de Links
+  const pathname = usePathname();
+  const { setOpen } = useCommandPalette();
+  const lenis = useLenis();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   if (pathname === "/links") {
     return null;
   }
 
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navLinks = [
-    { name: "Início", href: "#hero" },
-    { name: "Habilidades", href: "#skills" },
-    { name: "Sobre", href: "#about" },
-    { name: "Projetos", href: "#projects" },
-    { name: "Contato", href: "#contact" },
-  ];
-
   return (
-    <>
-      {/* 1. O OVERLAY (Fundo Escuro e Desfocado) */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
-          />
-        )}
-      </AnimatePresence>
+    <nav
+      className={`fixed top-0 z-50 w-full border-b font-mono transition-colors ${
+        scrolled
+          ? "border-phosphor-green/15 bg-background/80 backdrop-blur-md"
+          : "border-transparent bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto flex items-center justify-between px-6 py-3">
+        <a
+          href="#hero"
+          onClick={(e) => {
+            e.preventDefault();
+            const el = document.getElementById("hero");
+            if (!el) return;
+            if (lenis) lenis.scrollTo(el);
+            else el.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="text-sm text-phosphor-green"
+        >
+          gabriel<span className="text-phosphor-green/50">@</span>portfolio
+          <span className="text-phosphor-green/50">:~$</span>
+          <span className="animate-blink ml-1 inline-block h-4 w-[2px] bg-phosphor-green align-middle" />
+        </a>
 
-      {/* 2. A BARRA DE NAVEGAÇÃO */}
-      <motion.nav
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-          isScrolled || isMobileMenuOpen 
-            ? "bg-black/80 backdrop-blur-xl shadow-lg py-4" 
-            : "bg-transparent py-6"
-        }`}
-      >
-        <div className="container mx-auto px-6 flex items-center justify-between">
-          {/* Logo / Nome */}
-          <Link 
-            href="/" 
-            className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent hover:scale-105 transition-transform"
+        <div className="flex items-center gap-3 text-xs">
+          <button
+            onClick={() => setOpen(true)}
+            className="rounded border border-phosphor-green/30 px-3 py-1.5 text-phosphor-green transition-colors hover:border-phosphor-amber hover:text-phosphor-amber"
           >
-            dev.gabrielmartielo/about
-          </Link>
-
-          {/* Links Desktop */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium text-gray-300 hover:text-white hover:scale-105 transition-all"
-              >
-                {link.name}
-              </Link>
-            ))}
-            
-            <DownloadResume />
-          </div>
-
-          {/* Menu Mobile (Ícone) */}
-          <button 
-            className="md:hidden text-white text-2xl outline-none"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <FiX /> : <FiMenu />}
+            [ menu ]
           </button>
+          <DownloadResume />
         </div>
-
-        {/* Menu Mobile (Dropdown) */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div 
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden overflow-hidden"
-            >
-              <div className="flex flex-col p-6 gap-6 items-center bg-transparent">
-                 {navLinks.map((link) => (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-gray-200 hover:text-white text-lg font-medium"
-                    >
-                      {link.name}
-                    </Link>
-                 ))}
-                 
-                 <div onClick={() => setIsMobileMenuOpen(false)}>
-                    <DownloadResume />
-                 </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
-    </>
+      </div>
+    </nav>
   );
 }

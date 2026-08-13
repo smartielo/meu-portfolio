@@ -36,6 +36,18 @@ export interface Course {
   link?: string; // Link para o certificado (usaremos no futuro botão do site)
 }
 
+export interface Achievement {
+  id: string;
+  title: string;
+  issuer: string;
+  issuerLogo?: string;
+  date: string;
+  description: string;
+  credentialUrl?: string;
+  featured?: boolean;
+  category?: "reconhecimento" | "premio" | "certificacao_especial";
+}
+
 export interface TechProgress {
   label: string;
   level: number; // Porcentagem (0 a 100)
@@ -214,11 +226,24 @@ export const profileData = {
     },
   ] as Course[],
 
+  achievements: [
+    {
+      id: "google-student-ambassador",
+      title: "Google Student Ambassador",
+      issuer: "Google",
+      date: "Agosto 2026",
+      description: "Selecionado como Embaixador Estudantil do Google, representando a comunidade acadêmica em iniciativas de tecnologia, capacitação e engajamento com o ecossistema Google.",
+      credentialUrl: "https://lnkd.in/p/dpYecKm7",
+      featured: true,
+      category: "reconhecimento",
+    },
+  ] as Achievement[],
+
   studying: [
     { label: "Python", level: 75, color: "#3776AB" }, // Azul Python
-    { label: "Dart/Flutter", level: 60, color: "#7F52FF" }, // Roxo Dart
+    { label: "JavaScript", level: 70, color: "#F7DF1E" }, // Amarelo JS
     { label: "Docker", level: 40, color: "#2496ED" }, // Azul Docker
-    { label: "Cloud (AWS)", level: 30, color: "#FF9900" }, // Laranja AWS
+    { label: "Java", level: 45, color: "#EA2D2E" }, // Vermelho Java
   ] as TechProgress[],
 
   // Seu Setup
@@ -244,7 +269,7 @@ export const profileData = {
     {
       label: "Games",
       emoji: "🎮",
-      items: ["Minecraft", "Forza Horizon 5", "EA FC"] 
+      items: ["Minecraft", "Forza Horizon 6", "EA FC"] 
     },
     {
       label: "Música",

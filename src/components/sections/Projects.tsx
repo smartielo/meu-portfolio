@@ -1,45 +1,52 @@
 // src/components/sections/Projects.tsx
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
-import { profileData } from "@/data/profile";
+import { profileData, Project } from "@/data/profile";
 import { ProjectCard } from "@/components/ui/ProjectCard";
+import { ProjectModal } from "@/components/ui/ProjectModal";
+import { ContributionGraph } from "@/components/ui/ContributionGraph";
+import { CinematicSection } from "@/components/layouts/CinematicSection";
 
 // Importando estilos do Swiper
 import "swiper/css";
 import "swiper/css/pagination";
 
 export function Projects() {
+  const [selected, setSelected] = useState<Project | null>(null);
+
   return (
-    <section id="projects" className="py-20 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
-        
-        {/* Título da Seção */}
+    <CinematicSection id="projects" className="relative overflow-hidden py-20">
+      <div className="container relative z-10 mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.5 }}
-          className="mb-12 flex flex-col md:flex-row justify-between items-end gap-4"
+          className="mb-12 flex flex-col items-end justify-between gap-4 font-mono md:flex-row"
         >
           <div>
-            <h2 className="text-3xl font-bold text-white mb-2">
-              Projetos em Destaque <span className="text-blue-500">.</span>
-            </h2>
-            <p className="text-gray-400">
+            <p className="mb-2 text-phosphor-green/60">{"> "}ls ~/gabriel/projects</p>
+            <h2 className="text-3xl font-bold text-phosphor-green">Projetos em Destaque</h2>
+            <p className="mt-2 text-foreground/70">
               Uma coleção dos meus melhores trabalhos em desenvolvimento e dados.
             </p>
           </div>
-          
-          {/* Botão de PDF (Placeholder - Vamos ativar na próxima etapa) */}
-          <div id="resume-button-container">
-             {/* O botão de download entrará aqui */}
-          </div>
         </motion.div>
 
-        {/* Carrossel Swiper */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-10"
+        >
+          <ContributionGraph />
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,17 +64,20 @@ export function Projects() {
               768: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
             }}
-            className="pb-12" // Padding bottom para as bolinhas da paginação
+            className="pb-12"
           >
             {profileData.projects.map((project, index) => (
               <SwiperSlide key={index}>
-                <ProjectCard project={project} />
+                <ProjectCard project={project} onOpen={() => setSelected(project)} />
               </SwiperSlide>
             ))}
           </Swiper>
         </motion.div>
-
       </div>
-    </section>
+
+      <AnimatePresence>
+        {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}
+      </AnimatePresence>
+    </CinematicSection>
   );
 }
