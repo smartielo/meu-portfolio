@@ -1,109 +1,105 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Mail, Globe, MessageCircle, Instagram, Camera } from "lucide-react";
+import { Github, Linkedin, Globe, Camera, Instagram } from "lucide-react";
+import { HudGridBackground } from "@/components/ui/HudGridBackground";
+import { TerminalWindow } from "@/components/ui/TerminalWindow";
 
-// Dados dos links (Você pode mover para um arquivo separado depois se quiser)
 const links = [
   {
     title: "Portfólio Oficial",
-    url: "/", // Volta para a home do site
+    url: "/",
     icon: Globe,
-    color: "bg-blue-500",
+    label: "open_portfolio",
   },
   {
     title: "VSCO",
-    url: "https://vsco.co/gbehindthescenes", // Coloque seu link do VSCO aqui
-    icon: Camera, 
-    color: "bg-neutral-800", // Tom escuro/cinza que combina com o VSCO
+    url: "https://vsco.co/gbehindthescenes",
+    icon: Camera,
+    label: "open_vsco",
   },
   {
     title: "LinkedIn",
     url: "https://linkedin.com/in/gabrielmartielo",
     icon: Linkedin,
-    color: "bg-blue-700",
+    label: "open_linkedin",
   },
   {
     title: "GitHub",
     url: "https://github.com/smartielo",
     icon: Github,
-    color: "bg-gray-800",
+    label: "open_github",
   },
   {
     title: "Instagram",
     url: "https://instagram.com/gmartielos",
     icon: Instagram,
-    color: "bg-pink-600",
+    label: "open_instagram",
   },
 ];
 
 export default function LinksPage() {
   return (
-    <main className="min-h-screen w-full flex flex-col items-center justify-center p-4 relative overflow-hidden">
-      
-      {/* Background com Efeitos de Luz (Orbs) */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] pointer-events-none" />
+    <main className="relative min-h-screen w-full flex items-center justify-center p-4 overflow-hidden bg-background text-foreground font-mono">
+      <HudGridBackground />
 
-      {/* Container Principal (Glass Effect) */}
-      <div className="z-10 w-full max-w-md flex flex-col items-center gap-6">
-        
-        {/* Foto de Perfil */}
-        <div className="relative group">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
-          <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-gray-900">
-            <Image
-              src="/projects/perfillinks.jpg" // Certifique-se que essa imagem existe ou use a do GitHub
-              alt="Gabriel Martielo"
-              fill
-              className="object-cover"
-              priority
-            />
+      <div className="z-10 w-full max-w-lg">
+        <TerminalWindow path="~/links" title="connect_socials" className="mx-auto">
+          <div className="flex flex-col items-center text-center gap-6">
+            
+            {/* Profile Picture */}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-phosphor-green/30 rounded-full blur group-hover:blur-md transition-all duration-500" />
+              <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-phosphor-green shadow-[0_0_15px_rgba(0,255,0,0.2)]">
+                <Image
+                  src="/projects/perfillinks.jpg"
+                  alt="Gabriel Martielo"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+
+            {/* Header */}
+            <div className="space-y-1">
+              <h1 className="text-xl font-bold text-phosphor-green tracking-tighter">
+                GABRIEL MARTIELO
+              </h1>
+              <p className="text-phosphor-amber text-xs opacity-80">
+                Full Stack Dev | Computer Science Student
+              </p>
+            </div>
+
+            {/* Links Grid */}
+            <div className="w-full grid gap-3 mt-4">
+              {links.map((link, index) => (
+                <Link
+                  key={index}
+                  href={link.url}
+                  target={link.url.startsWith("/") ? "_self" : "_blank"}
+                  className="group relative flex items-center gap-3 p-3 bg-phosphor-green/5 border border-phosphor-green/20 hover:border-phosphor-amber/50 hover:bg-phosphor-green/10 transition-all duration-200"
+                >
+                  <div className="text-phosphor-green group-hover:text-phosphor-amber transition-colors">
+                    <link.icon size={18} />
+                  </div>
+                  
+                  <span className="text-sm text-phosphor-green/80 group-hover:text-phosphor-amber transition-colors">
+                    {link.title}
+                  </span>
+
+                  <span className="ml-auto text-[10px] text-phosphor-green/40 group-hover:text-phosphor-amber/60 font-mono">
+                    [{link.label}]
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            {/* Footer */}
+            <footer className="mt-6 pt-4 border-t border-phosphor-green/10 w-full text-phosphor-green/30 text-[10px] text-center">
+              <p>© 2026 GABRIEL MARTIELO // SYSTEM_READY</p>
+            </footer>
           </div>
-        </div>
-
-        {/* Textos */}
-        <div className="text-center space-y-2 mb-4">
-          <h1 className="text-2xl font-bold text-white tracking-tight">
-            Gabriel Martielo
-          </h1>
-          <p className="text-gray-400 text-sm font-medium px-4 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm inline-block">
-            Estudante de Ciência da Computação 💻 | Full Stack Dev 🚀 | Iniciante em Data Science 🧮
-          </p>
-        </div>
-
-        {/* Lista de Links */}
-        <div className="w-full flex flex-col gap-4">
-          {links.map((link, index) => (
-            <Link
-              key={index}
-              href={link.url}
-              target={link.url.startsWith("/") ? "_self" : "_blank"}
-              className="group relative w-full p-4 flex items-center gap-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl transition-all duration-300 backdrop-blur-md hover:scale-[1.02] active:scale-[0.98]"
-            >
-              {/* Ícone com fundo colorido sutil */}
-              <div className={`p-2 rounded-lg ${link.color} bg-opacity-20 text-white group-hover:scale-110 transition-transform`}>
-                <link.icon size={20} />
-              </div>
-              
-              {/* Texto */}
-              <span className="font-medium text-gray-200 group-hover:text-white transition-colors">
-                {link.title}
-              </span>
-
-              {/* Seta discreta no final */}
-              <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 text-gray-400">
-                →
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* Footerzinho simples */}
-        <footer className="mt-12 text-gray-500 text-xs text-center">
-          <p>© 2026 Gabriel Martielo</p>
-          <p className="mt-1">Feito com Next.js & Tailwind</p>
-        </footer>
-
+        </TerminalWindow>
       </div>
     </main>
   );

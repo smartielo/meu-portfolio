@@ -33,7 +33,7 @@ export interface Course {
   title: string;
   institution: string;
   duration: string;
-  link?: string; // Link para o certificado (usaremos no futuro botão do site)
+  link?: string; 
 }
 
 export interface Achievement {
@@ -50,8 +50,8 @@ export interface Achievement {
 
 export interface TechProgress {
   label: string;
-  level: number; // Porcentagem (0 a 100)
-  color: string; // Cor da barra (Hex)
+  level: number; 
+  color: string; 
 }
 
 export const profileData = {
@@ -229,7 +229,7 @@ export const profileData = {
   achievements: [
     {
       id: "google-student-ambassador",
-      title: "Google Student Ambassador",
+      title: "Embaixador Estudantil do Google - 2026",
       issuer: "Google",
       date: "Agosto 2026",
       description: "Selecionado como Embaixador Estudantil do Google, representando a comunidade acadêmica em iniciativas de tecnologia, capacitação e engajamento com o ecossistema Google.",
@@ -248,7 +248,7 @@ export const profileData = {
 
   // Seu Setup
   setup: {
-    image: "/projects/meu-setup.jpg", // Vamos colocar essa foto depois
+    image: "/projects/meu-setup.jpg",
     description: "Meu cantinho de estudos e desenvolvimento. Focado em produtividade e conforto.",
     specs: [
       "S23 Ultra",
