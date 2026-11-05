@@ -5,7 +5,6 @@ import { FiArrowUpRight, FiGithub, FiLinkedin } from "react-icons/fi";
 import { profileData } from "@/data/profile";
 import { HudGridBackground } from "@/components/ui/HudGridBackground";
 import { NeofetchCard } from "@/components/ui/NeofetchCard";
-import { NowPlaying } from "@/components/ui/NowPlaying";
 import { CinematicSection } from "@/components/layouts/CinematicSection";
 
 export function Hero() {
@@ -13,8 +12,8 @@ export function Hero() {
     <CinematicSection id="hero" className="relative flex items-start overflow-hidden pt-24 pb-16 lg:min-h-screen lg:items-center lg:pt-28">
       <HudGridBackground />
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-6">
-        <div className="mx-auto max-w-6xl">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-6">
+        <div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,9 +52,8 @@ export function Hero() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45, duration: 0.8 }} className="mt-10 grid gap-3 sm:mt-14 lg:grid-cols-2">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45, duration: 0.8 }} className="mt-10 max-w-2xl sm:mt-14">
             <NeofetchCard />
-            <NowPlaying />
           </motion.div>
         </div>
       </div>

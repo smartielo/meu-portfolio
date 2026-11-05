@@ -28,7 +28,7 @@ export function Navbar() {
           : "border-transparent bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-4 py-3 sm:px-6">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <a
           href="#hero"
           onClick={(e) => {

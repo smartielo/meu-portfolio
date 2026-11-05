@@ -9,7 +9,7 @@ import { CinematicSection } from "@/components/layouts/CinematicSection";
 export function About() {
   return (
     <CinematicSection id="about" className="relative overflow-hidden bg-black/20 py-20">
-      <div className="container relative z-10 mx-auto px-4 sm:px-6">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
