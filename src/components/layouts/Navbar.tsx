@@ -28,7 +28,7 @@ export function Navbar() {
           : "border-transparent bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-6 py-3">
+      <div className="container mx-auto flex items-center justify-between px-4 py-3 sm:px-6">
         <a
           href="#hero"
           onClick={(e) => {
@@ -37,13 +37,14 @@ export function Navbar() {
             if (!el) return;
             el.scrollIntoView({ behavior: "smooth" });
           }}
-          className="flex items-center gap-3 text-sm font-semibold text-white"
+          className="flex min-w-0 items-center gap-2 text-sm font-semibold text-white sm:gap-3"
         >
           <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-phosphor-green to-phosphor-amber text-xs text-background">GM</span>
-          <span>Gabriel Martielo</span>
+          <span className="hidden sm:inline">Gabriel Martielo</span>
+          <span className="sm:hidden">Gabriel</span>
         </a>
 
-        <div className="flex items-center gap-3 text-xs">
+        <div className="flex shrink-0 items-center gap-2 text-xs sm:gap-3">
           <button
             onClick={() => setOpen(true)}
             className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-foreground/75 transition-all hover:border-phosphor-green/40 hover:bg-white/10 hover:text-white"

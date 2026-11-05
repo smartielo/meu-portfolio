@@ -20,7 +20,7 @@ export function Projects() {
 
   return (
     <CinematicSection id="projects" className="relative overflow-hidden py-20">
-      <div className="container relative z-10 mx-auto px-6">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ export function Projects() {
         >
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-phosphor-green">Trabalhos selecionados</p>
-            <h2 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">Projetos em destaque</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">Projetos em destaque</h2>
             <p className="mt-2 text-foreground/70">
               Uma coleção dos meus melhores trabalhos em desenvolvimento e dados.
             </p>

@@ -10,10 +10,10 @@ import { CinematicSection } from "@/components/layouts/CinematicSection";
 
 export function Hero() {
   return (
-    <CinematicSection id="hero" className="relative flex min-h-screen items-center overflow-hidden pt-28 pb-16">
+    <CinematicSection id="hero" className="relative flex items-start overflow-hidden pt-24 pb-16 lg:min-h-screen lg:items-center lg:pt-28">
       <HudGridBackground />
 
-      <div className="container relative z-10 mx-auto px-6">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6">
         <div className="mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -29,7 +29,7 @@ export function Hero() {
               )}
 
               <p className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-phosphor-green">Desenvolvedor Full Stack & Dados</p>
-              <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-white sm:text-7xl lg:text-8xl">
+              <h1 className="max-w-4xl text-[2.65rem] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:text-7xl lg:text-8xl">
                 Soluções digitais com <span className="bg-gradient-to-r from-phosphor-green via-white to-phosphor-amber bg-clip-text text-transparent">clareza e impacto.</span>
               </h1>
               <p className="mt-7 max-w-2xl text-base leading-relaxed text-foreground/65 md:text-lg">{profileData.headline}</p>
@@ -53,7 +53,7 @@ export function Hero() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45, duration: 0.8 }} className="mt-14 grid gap-3 sm:grid-cols-2">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45, duration: 0.8 }} className="mt-10 grid gap-3 sm:mt-14 lg:grid-cols-2">
             <NeofetchCard />
             <NowPlaying />
           </motion.div>

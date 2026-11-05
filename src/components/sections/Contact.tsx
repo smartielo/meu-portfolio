@@ -10,9 +10,9 @@ import { CinematicSection } from "@/components/layouts/CinematicSection";
 
 export function Contact() {
   return (
-    <CinematicSection id="contact" className="relative overflow-hidden py-24">
+    <CinematicSection id="contact" className="relative overflow-hidden py-20 sm:py-24">
       <HudGridBackground variant="subtle" />
-      <div className="container relative z-10 mx-auto px-6">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -20,10 +20,10 @@ export function Contact() {
           className="mx-auto max-w-4xl"
         >
           <TerminalWindow path="contact" title="Vamos conversar" className="text-center">
-            <h2 className="mb-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">
+            <h2 className="mb-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
               Vamos trabalhar juntos?
             </h2>
-            <p className="mb-8 text-lg text-foreground/70">
+            <p className="mb-8 text-base leading-relaxed text-foreground/70 sm:text-lg">
               Estou sempre aberto a novos desafios e oportunidades na área de Desenvolvimento e Dados.
               Se você tem uma vaga ou um projeto em mente, mande um oi!
             </p>
@@ -32,14 +32,14 @@ export function Contact() {
               {/* Card Email */}
               <a
                 href={`mailto:${profileData.email}`}
-                className="group flex items-center gap-4 border border-phosphor-green/15 bg-black/20 p-4 text-left transition-all duration-300 hover:border-phosphor-amber hover:bg-phosphor-green/5"
+                className="group flex min-w-0 items-center gap-3 rounded-2xl border border-phosphor-green/15 bg-black/20 p-4 text-left transition-all duration-300 hover:border-phosphor-amber hover:bg-phosphor-green/5 sm:gap-4"
               >
-                <div className="rounded-full bg-white/10 p-3 group-hover:bg-white/20">
+                <div className="shrink-0 rounded-full bg-white/10 p-3 group-hover:bg-white/20">
                   <FiMail className="text-xl text-phosphor-green" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs text-foreground/50">Email</p>
-                  <p className="text-sm font-medium text-foreground">{profileData.email}</p>
+                  <p className="break-all text-sm font-medium text-foreground">{profileData.email}</p>
                 </div>
               </a>
 

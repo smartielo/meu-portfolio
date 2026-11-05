@@ -10,8 +10,8 @@ import { CinematicSection } from "@/components/layouts/CinematicSection";
 
 export function Personal() {
   return (
-    <CinematicSection id="personal" className="relative overflow-hidden py-24">
-      <div className="container relative z-10 mx-auto px-6">
+    <CinematicSection id="personal" className="relative overflow-hidden py-20 sm:py-24">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6">
         <div className="grid gap-12 md:grid-cols-2">
           {/* COLUNA 1: Texto Sobre Mim */}
           <motion.div
@@ -26,7 +26,7 @@ export function Personal() {
                 <div className="rounded border border-phosphor-green/10 bg-phosphor-green/10 p-3 text-phosphor-green">
                   <FiUser size={22} />
                 </div>
-                <h2 className="font-mono text-2xl font-bold text-phosphor-green">Quem sou eu?</h2>
+                <h2 className="font-mono text-xl font-bold text-phosphor-green sm:text-2xl">Quem sou eu?</h2>
               </div>
 
               <div className="flex-grow space-y-6 text-sm leading-relaxed text-foreground/80 md:text-base">
@@ -73,7 +73,7 @@ export function Personal() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="group border border-phosphor-green/15 bg-crt-panel/40 p-6 font-mono transition-colors hover:border-phosphor-green/40"
+              className="group rounded-2xl border border-phosphor-green/15 bg-crt-panel/40 p-5 font-mono transition-colors hover:border-phosphor-green/40 sm:p-6"
             >
               <div className="mb-4 flex items-center gap-3 text-phosphor-green">
                 <FiMonitor size={18} />
@@ -91,14 +91,14 @@ export function Personal() {
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-2 gap-6 font-mono">
+            <div className="grid grid-cols-1 gap-4 font-mono sm:grid-cols-2 sm:gap-6">
               {/* Card de MÚSICA */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="border border-phosphor-green/15 bg-crt-panel/40 p-6 transition-colors hover:border-phosphor-amber/40"
+                className="rounded-2xl border border-phosphor-green/15 bg-crt-panel/40 p-5 transition-colors hover:border-phosphor-amber/40 sm:p-6"
               >
                 <div className="mb-4 flex items-center gap-3 text-phosphor-amber">
                   <FiMusic size={18} />
@@ -121,7 +121,7 @@ export function Personal() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="border border-phosphor-green/15 bg-crt-panel/40 p-6 transition-colors hover:border-phosphor-green/40"
+                className="rounded-2xl border border-phosphor-green/15 bg-crt-panel/40 p-5 transition-colors hover:border-phosphor-green/40 sm:p-6"
               >
                 <div className="mb-4 flex items-center gap-3 text-phosphor-green">
                   <FiActivity size={18} />
@@ -144,7 +144,7 @@ export function Personal() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="group relative min-h-[300px] w-full flex-grow overflow-hidden border border-phosphor-green/15 shadow-2xl"
+              className="group relative min-h-[300px] w-full flex-grow overflow-hidden rounded-2xl border border-phosphor-green/15 shadow-2xl"
             >
               <div className="absolute inset-0 z-10 transition-colors duration-500 group-hover:bg-transparent" />
 

@@ -24,7 +24,7 @@ export function Achievements() {
     <CinematicSection id="achievements" className="relative overflow-hidden py-24">
       <HudGridBackground variant="subtle" />
 
-      <div className="container relative z-10 mx-auto px-6">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,7 +33,7 @@ export function Achievements() {
           className="mb-12"
         >
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-phosphor-green">Trajetória</p>
-          <h2 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">Conquistas</h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">Conquistas</h2>
           <p className="mt-2 max-w-xl text-foreground/70">
             Reconhecimentos e marcos da minha trajetória em tecnologia.
           </p>

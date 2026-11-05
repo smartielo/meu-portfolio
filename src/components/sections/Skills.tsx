@@ -14,17 +14,17 @@ export function Skills() {
   };
 
   return (
-    <CinematicSection id="skills" className="relative overflow-hidden py-32">
-      <div className="container relative z-10 mx-auto px-6">
+    <CinematicSection id="skills" className="relative overflow-hidden py-20 sm:py-28 lg:py-32">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="mb-16"
+          className="mb-10 sm:mb-16"
         >
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-phosphor-green">Stack & especialidades</p>
-          <h2 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">Habilidades</h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">Habilidades</h2>
           <p className="mt-2 max-w-xl text-foreground/70">
             Um mix de tecnologias para criar interfaces bonitas e processar dados complexos.
           </p>
@@ -38,7 +38,7 @@ export function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group rounded-3xl border border-white/8 bg-white/[0.035] p-7 backdrop-blur transition-all hover:-translate-y-1 hover:border-phosphor-green/30 hover:bg-white/[0.055]"
+              className="group rounded-3xl border border-white/8 bg-white/[0.035] p-5 backdrop-blur transition-all hover:-translate-y-1 hover:border-phosphor-green/30 hover:bg-white/[0.055] sm:p-7"
             >
               <div className="mb-5 flex items-center gap-3">
                 <div className="rounded-2xl border border-white/8 bg-white/5 p-3">

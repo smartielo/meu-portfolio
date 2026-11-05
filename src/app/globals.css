@@ -24,10 +24,14 @@
   --font-mono: var(--font-jetbrains-mono);
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
 
 body {
   min-height: 100vh;
+  overflow-x: clip;
   background:
     radial-gradient(circle at 10% 0%, rgba(93, 107, 255, 0.14), transparent 32rem),
     radial-gradient(circle at 90% 18%, rgba(197, 167, 255, 0.1), transparent 30rem),
