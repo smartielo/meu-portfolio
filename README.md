@@ -73,6 +73,18 @@ npm run dev
 ## 🌐 Deploy
 O deploy contínuo é realizado através da Vercel, garantindo alta disponibilidade e performance global.
 
+### Spotify em produção
+
+O card "Ouvindo agora" exige estas variáveis no projeto da Vercel:
+
+```text
+SPOTIFY_CLIENT_ID
+SPOTIFY_CLIENT_SECRET
+SPOTIFY_REFRESH_TOKEN
+```
+
+Cadastre as três em **Settings → Environment Variables** para Production, Preview e Development e faça um novo deploy. O `SPOTIFY_REFRESH_TOKEN` é obtido localmente acessando `http://127.0.0.1:3000/api/spotify/login`. Refresh tokens do Spotify expiram e, quando isso acontecer, a autorização precisa ser refeita.
+
 ## 📄 Licença
 Este projeto está sob a licença MIT. Sinta-se à vontade para usar como inspiração.
 

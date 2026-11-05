@@ -5,12 +5,9 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { ScrollToTop } from "../components/ui/ScrollToTop";
 import { ShareFloating } from "../components/ui/ShareFloating";
-import { ScreenshotListener } from "../components/ui/ScreenshotListener";
-import { LenisProvider } from "@/components/providers/LenisProvider";
 import { CommandPaletteProvider } from "@/components/providers/CommandPaletteProvider";
 import { CommandPalette } from "@/components/ui/CommandPalette";
 import { SectionDock } from "@/components/layouts/SectionDock";
-import { ConsoleEasterEgg } from "@/components/ui/ConsoleEasterEgg";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -56,18 +53,14 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${montserrat.variable} ${jetbrainsMono.variable} font-sans bg-background text-foreground antialiased`}>
-        <div className="noise-overlay crt-scanlines fixed inset-0 z-[1] pointer-events-none" aria-hidden />
-        <LenisProvider>
-          <CommandPaletteProvider>
-            {children}
-            <SectionDock />
-            <CommandPalette />
-          </CommandPaletteProvider>
-        </LenisProvider>
+        <div className="noise-overlay fixed inset-0 z-[1] pointer-events-none" aria-hidden />
+        <CommandPaletteProvider>
+          {children}
+          <SectionDock />
+          <CommandPalette />
+        </CommandPaletteProvider>
         <ShareFloating />        {/* Botão de Compartilhar (Canto esquerdo) */}
-        <ScreenshotListener />   {/* Detector de Print */}
         <ScrollToTop />          {/* Botão de Subir (Canto direito) */}
-        <ConsoleEasterEgg />
         <Analytics />
       </body>
     </html>

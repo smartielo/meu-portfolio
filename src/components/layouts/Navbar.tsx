@@ -4,12 +4,10 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { DownloadResume } from "@/components/ui/DownloadResume";
 import { useCommandPalette } from "@/components/providers/CommandPaletteProvider";
-import { useLenis } from "@/components/providers/LenisProvider";
 
 export function Navbar() {
   const pathname = usePathname();
   const { setOpen } = useCommandPalette();
-  const lenis = useLenis();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -24,9 +22,9 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 z-50 w-full border-b font-mono transition-colors ${
+      className={`fixed top-0 z-50 w-full border-b transition-all ${
         scrolled
-          ? "border-phosphor-green/15 bg-background/80 backdrop-blur-md"
+          ? "border-white/8 bg-background/75 backdrop-blur-xl"
           : "border-transparent bg-transparent"
       }`}
     >
@@ -37,22 +35,20 @@ export function Navbar() {
             e.preventDefault();
             const el = document.getElementById("hero");
             if (!el) return;
-            if (lenis) lenis.scrollTo(el);
-            else el.scrollIntoView({ behavior: "smooth" });
+            el.scrollIntoView({ behavior: "smooth" });
           }}
-          className="text-sm text-phosphor-green"
+          className="flex items-center gap-3 text-sm font-semibold text-white"
         >
-          gabriel<span className="text-phosphor-green/50">@</span>portfolio
-          <span className="text-phosphor-green/50">:~$</span>
-          <span className="animate-blink ml-1 inline-block h-4 w-[2px] bg-phosphor-green align-middle" />
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-phosphor-green to-phosphor-amber text-xs text-background">GM</span>
+          <span>Gabriel Martielo</span>
         </a>
 
         <div className="flex items-center gap-3 text-xs">
           <button
             onClick={() => setOpen(true)}
-            className="rounded border border-phosphor-green/30 px-3 py-1.5 text-phosphor-green transition-colors hover:border-phosphor-amber hover:text-phosphor-amber"
+            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-foreground/75 transition-all hover:border-phosphor-green/40 hover:bg-white/10 hover:text-white"
           >
-            [ menu ]
+            Menu
           </button>
           <DownloadResume />
         </div>

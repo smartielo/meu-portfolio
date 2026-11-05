@@ -19,18 +19,18 @@ export function Skills() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="mb-16 font-mono"
+          className="mb-16"
         >
-          <p className="mb-2 text-phosphor-green/60">{"> "}ls ~/gabriel/skills</p>
-          <h2 className="text-3xl font-bold text-phosphor-green md:text-4xl">Habilidades</h2>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-phosphor-green">Stack & especialidades</p>
+          <h2 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">Habilidades</h2>
           <p className="mt-2 max-w-xl text-foreground/70">
             Um mix de tecnologias para criar interfaces bonitas e processar dados complexos.
           </p>
         </motion.div>
 
-        <div className="grid gap-6 font-mono md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {profileData.skills.map((category, index) => (
             <motion.div
               key={category.category}
@@ -38,10 +38,10 @@ export function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group border border-phosphor-green/15 bg-crt-panel/40 p-6 transition-colors hover:border-phosphor-green/40"
+              className="group rounded-3xl border border-white/8 bg-white/[0.035] p-7 backdrop-blur transition-all hover:-translate-y-1 hover:border-phosphor-green/30 hover:bg-white/[0.055]"
             >
               <div className="mb-5 flex items-center gap-3">
-                <div className="rounded border border-phosphor-green/10 bg-black/30 p-2.5">
+                <div className="rounded-2xl border border-white/8 bg-white/5 p-3">
                   {getIcon(index)}
                 </div>
                 <h3 className="text-base font-bold text-phosphor-green">{category.category}</h3>
@@ -51,9 +51,9 @@ export function Skills() {
                 {category.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="border border-phosphor-green/15 bg-black/20 px-2.5 py-1 text-xs text-foreground/70 transition-colors group-hover:border-phosphor-green/30 group-hover:text-foreground"
+                    className="rounded-full border border-white/8 bg-white/5 px-3 py-1.5 text-xs text-foreground/65 transition-colors group-hover:border-phosphor-green/20 group-hover:text-foreground"
                   >
-                    [{skill}]
+                    {skill}
                   </span>
                 ))}
               </div>

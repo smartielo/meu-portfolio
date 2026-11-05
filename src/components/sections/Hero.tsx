@@ -1,146 +1,63 @@
-// src/components/sections/Hero.tsx
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { FiArrowUpRight, FiGithub, FiLinkedin } from "react-icons/fi";
 import { profileData } from "@/data/profile";
 import { HudGridBackground } from "@/components/ui/HudGridBackground";
-import { TerminalWindow } from "@/components/ui/TerminalWindow";
 import { NeofetchCard } from "@/components/ui/NeofetchCard";
 import { NowPlaying } from "@/components/ui/NowPlaying";
 import { CinematicSection } from "@/components/layouts/CinematicSection";
 
-const BOOT_LINES = [
-  "initializing portfolio.exe",
-  "loading profile: gabriel martielo",
-  "mounting sections... [ok]",
-  "welcome.",
-];
-
-function BootSequence({ onDone }: { onDone: () => void }) {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced || sessionStorage.getItem("boot-seen")) {
-      onDone();
-      return;
-    }
-    setVisible(true);
-    sessionStorage.setItem("boot-seen", "1");
-    const t = setTimeout(onDone, 2600);
-    return () => clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (!visible) return null;
-
-  return (
-    <motion.div
-      exit={{ opacity: 0 }}
-      onClick={onDone}
-      className="fixed inset-0 z-[300] flex cursor-pointer flex-col justify-center bg-background px-8 font-mono text-sm text-phosphor-green"
-    >
-      {BOOT_LINES.map((line, i) => (
-        <motion.p
-          key={line}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: i * 0.35 }}
-        >
-          {"> "}
-          {line}
-        </motion.p>
-      ))}
-      <button
-        onClick={onDone}
-        className="absolute bottom-8 right-8 text-xs text-phosphor-green/40 hover:text-phosphor-amber"
-      >
-        [ skip ]
-      </button>
-    </motion.div>
-  );
-}
-
 export function Hero() {
-  const [booted, setBooted] = useState(false);
-
-  const sentence = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: { delay: 0.3, staggerChildren: 0.06 },
-    },
-  };
-
-  const letter = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
-    <CinematicSection
-      id="hero"
-      className="relative flex min-h-screen items-center overflow-hidden bg-background pt-24"
-    >
-      <AnimatePresence>{!booted && <BootSequence onDone={() => setBooted(true)} />}</AnimatePresence>
-
+    <CinematicSection id="hero" className="relative flex min-h-screen items-center overflow-hidden pt-28 pb-16">
       <HudGridBackground />
 
       <div className="container relative z-10 mx-auto px-6">
-        <TerminalWindow path="~/gabriel" title="whoami" className="mx-auto max-w-3xl">
-          {profileData.achievements?.some((a) => a.featured) && (
-            <a
-              href="#achievements"
-              className="mb-4 inline-block border border-phosphor-amber/40 bg-phosphor-amber/10 px-3 py-1 font-mono text-xs text-phosphor-amber transition-colors hover:bg-phosphor-amber/20"
-            >
-              [ badge: google student ambassador ]
-            </a>
-          )}
-
-          <p className="font-mono text-phosphor-green/60">{"> "}whoami</p>
-
-          <motion.h1
-            variants={sentence}
-            initial="hidden"
-            animate={booted ? "visible" : "hidden"}
-            className="mb-4 font-mono text-4xl font-bold text-phosphor-green md:text-6xl"
+        <div className="mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="grid items-end gap-12 lg:grid-cols-[1.35fr_.65fr]"
           >
-            {profileData.name.split("").map((char, index) => (
-              <motion.span key={char + "-" + index} variants={letter}>
-                {char}
-              </motion.span>
-            ))}
-          </motion.h1>
+            <div>
+              {profileData.achievements?.some((a) => a.featured) && (
+                <a href="#achievements" className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-foreground/70 backdrop-blur hover:bg-white/10 hover:text-white">
+                  Google Student Ambassador <FiArrowUpRight />
+                </a>
+              )}
 
-          <p className="mb-4 font-mono text-phosphor-amber">{profileData.role}</p>
+              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-phosphor-green">Desenvolvedor Full Stack & Dados</p>
+              <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-white sm:text-7xl lg:text-8xl">
+                Soluções digitais com <span className="bg-gradient-to-r from-phosphor-green via-white to-phosphor-amber bg-clip-text text-transparent">clareza e impacto.</span>
+              </h1>
+              <p className="mt-7 max-w-2xl text-base leading-relaxed text-foreground/65 md:text-lg">{profileData.headline}</p>
 
-          <p className="mb-8 max-w-2xl text-foreground/80 leading-relaxed">{profileData.headline}</p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <a href={profileData.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-background transition hover:-translate-y-0.5 hover:bg-phosphor-green">
+                  <FiLinkedin /> LinkedIn
+                </a>
+                <a href={profileData.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10">
+                  <FiGithub /> GitHub
+                </a>
+              </div>
+            </div>
 
-          <div className="flex flex-wrap gap-4 font-mono text-sm">
-            <a
-              href={profileData.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-phosphor-green transition-colors hover:text-phosphor-amber"
-            >
-              [ open linkedin ]
-            </a>
-            <a
-              href={profileData.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-phosphor-green transition-colors hover:text-phosphor-amber"
-            >
-              [ open github ]
-            </a>
-          </div>
+            <div className="rounded-3xl border border-white/10 bg-white/[0.045] p-6 backdrop-blur-xl">
+              <p className="text-xs uppercase tracking-[0.2em] text-foreground/35">Perfil</p>
+              <h2 className="mt-3 text-2xl font-semibold text-white">{profileData.name}</h2>
+              <p className="mt-1 text-sm text-phosphor-amber">{profileData.role}</p>
+              <div className="mt-6 h-px bg-white/8" />
+              <p className="mt-6 text-sm leading-relaxed text-foreground/55">Criando experiências web, produtos orientados a dados e soluções que conectam tecnologia a problemas reais.</p>
+            </div>
+          </motion.div>
 
-          <div className="mt-8 grid gap-3 border-t border-phosphor-green/10 pt-8 sm:grid-cols-2">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45, duration: 0.8 }} className="mt-14 grid gap-3 sm:grid-cols-2">
             <NeofetchCard />
             <NowPlaying />
-          </div>
-        </TerminalWindow>
+          </motion.div>
+        </div>
       </div>
     </CinematicSection>
   );

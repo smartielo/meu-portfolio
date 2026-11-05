@@ -1,63 +1,143 @@
-// src/components/ui/NowPlaying.tsx
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import { FiExternalLink, FiMusic } from "react-icons/fi";
 
 interface NowPlayingData {
   configured: boolean;
   isPlaying: boolean;
+  reason?: "missing_env" | "invalid_refresh_token" | "token_request_failed" | "playback_request_failed";
   title?: string;
   artist?: string;
   songUrl?: string;
+  albumName?: string;
+  albumImageUrl?: string;
+  progressMs?: number;
+  durationMs?: number;
+  contentType?: "track" | "episode";
+}
+
+function formatTime(milliseconds: number) {
+  const seconds = Math.max(0, Math.floor(milliseconds / 1000));
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 }
 
 export function NowPlaying() {
   const [data, setData] = useState<NowPlayingData | null>(null);
+  const [positionMs, setPositionMs] = useState(0);
 
   useEffect(() => {
     let mounted = true;
 
     async function fetchNowPlaying() {
+      if (document.visibilityState === "hidden") return;
       try {
-        const res = await fetch("/api/now-playing");
-        const json = await res.json();
-        if (mounted) setData(json);
+        const response = await fetch("/api/now-playing", { cache: "no-store" });
+        if (!response.ok) throw new Error(`Spotify API returned ${response.status}`);
+        const json = (await response.json()) as NowPlayingData;
+        if (mounted) {
+          setData(json);
+          setPositionMs(json.progressMs ?? 0);
+        }
       } catch {
         if (mounted) setData({ configured: false, isPlaying: false });
       }
     }
 
-    fetchNowPlaying();
-    const interval = setInterval(fetchNowPlaying, 30000);
+    const initialRequest = window.setTimeout(fetchNowPlaying, 900);
+    const interval = window.setInterval(fetchNowPlaying, 60000);
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") fetchNowPlaying();
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
     return () => {
       mounted = false;
-      clearInterval(interval);
+      window.clearTimeout(initialRequest);
+      window.clearInterval(interval);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);
 
-  return (
-    <div className="flex h-full flex-col justify-center border border-phosphor-green/10 bg-black/30 p-4 font-mono text-sm">
-      <p className="mb-2 text-xs uppercase tracking-widest text-phosphor-amber">now_playing</p>
+  useEffect(() => {
+    if (!data?.isPlaying || !data.durationMs) return;
+    const progressTimer = window.setInterval(() => {
+      setPositionMs((current) => Math.min(current + 1000, data.durationMs ?? current));
+    }, 1000);
+    return () => window.clearInterval(progressTimer);
+  }, [data?.durationMs, data?.isPlaying]);
 
-      {!data ? (
-        <p className="text-foreground/40">{"> "}carregando...</p>
-      ) : !data.configured ? (
-        <p className="text-foreground/40">{"> "}aguardando credenciais do spotify...</p>
-      ) : data.isPlaying && data.title ? (
-        <a
-          href={data.songUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-phosphor-green transition-colors hover:text-phosphor-amber"
-        >
-          <span className="animate-pulse">♪</span>
-          <span className="truncate">
-            {data.title} — {data.artist}
-          </span>
-        </a>
-      ) : (
-        <p className="text-foreground/40">{"> "}nada tocando agora</p>
-      )}
+  const isPlaying = Boolean(data?.isPlaying && data.title);
+  const duration = data?.durationMs ?? 0;
+  const progress = duration > 0 ? Math.min((positionMs / duration) * 100, 100) : 0;
+
+  let status = "Conectando ao Spotify...";
+  if (data && !data.configured) status = "Spotify indisponível neste ambiente.";
+  else if (data?.reason === "invalid_refresh_token") status = "Spotify precisa ser reconectado.";
+  else if (data?.reason) status = "Spotify temporariamente indisponível.";
+  else if (data && !data.isPlaying) status = "Nada tocando no momento.";
+
+  return (
+    <div className="group relative flex min-h-[160px] overflow-hidden rounded-2xl border border-white/8 bg-white/[0.035] p-5 backdrop-blur">
+      <div className="pointer-events-none absolute -right-12 -top-16 h-40 w-40 rounded-full bg-phosphor-amber/10 blur-3xl transition-colors group-hover:bg-phosphor-green/15" />
+
+      <div className="relative z-10 flex w-full items-center gap-5">
+        <div className="relative h-24 w-24 shrink-0">
+          <div
+            className={`absolute inset-0 rounded-full border border-white/10 bg-[repeating-radial-gradient(circle_at_center,#0b0d14_0,#0b0d14_3px,#171b28_4px,#0b0d14_7px)] shadow-[0_14px_35px_rgba(0,0,0,.35)] ${isPlaying ? "vinyl-spinning" : ""}`}
+          >
+            <div className="absolute inset-[17px] overflow-hidden rounded-full border border-white/10 bg-gradient-to-br from-phosphor-green to-phosphor-amber">
+              {data?.albumImageUrl ? (
+                <Image src={data.albumImageUrl} alt="" fill sizes="62px" quality={75} className="object-cover" />
+              ) : (
+                <FiMusic className="absolute inset-0 m-auto text-sm text-white" />
+              )}
+            </div>
+            <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/30 bg-background" />
+          </div>
+          {isPlaying && <span className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,.8)]" />}
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <div className="mb-2 flex items-center gap-2">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-phosphor-amber">
+              {isPlaying ? "Ouvindo agora" : "Spotify"}
+            </p>
+            {isPlaying && <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />}
+          </div>
+
+          {isPlaying ? (
+            <a href={data?.songUrl} target="_blank" rel="noopener noreferrer" className="group/link block min-w-0">
+              <span className="flex items-center gap-2">
+                <strong className="truncate text-sm font-semibold text-white transition-colors group-hover/link:text-phosphor-green sm:text-base">{data?.title}</strong>
+                <FiExternalLink className="shrink-0 text-xs text-foreground/25 transition-colors group-hover/link:text-phosphor-green" />
+              </span>
+              <span className="mt-0.5 block truncate text-xs text-foreground/50">{data?.artist}</span>
+            </a>
+          ) : (
+            <p className="text-sm text-foreground/45">{status}</p>
+          )}
+
+          <div className="mt-4 flex items-center gap-2.5">
+            <span className="w-7 text-[9px] tabular-nums text-foreground/30">{formatTime(positionMs)}</span>
+            <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/8">
+              <div className="h-full rounded-full bg-gradient-to-r from-phosphor-green to-phosphor-amber transition-[width] duration-1000 ease-linear" style={{ width: `${progress}%` }} />
+            </div>
+            <span className="w-7 text-right text-[9px] tabular-nums text-foreground/30">{formatTime(duration)}</span>
+          </div>
+        </div>
+
+        <div className={`hidden h-10 items-end gap-1 sm:flex ${isPlaying ? "" : "equalizer-paused"}`} aria-hidden>
+          {[0, 1, 2, 3, 4].map((bar) => (
+            <span
+              key={bar}
+              className="equalizer-bar h-full w-1 rounded-full bg-gradient-to-t from-phosphor-green to-phosphor-amber"
+              style={{ animationDelay: `${bar * -0.13}s`, animationDuration: `${0.68 + bar * 0.09}s` }}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

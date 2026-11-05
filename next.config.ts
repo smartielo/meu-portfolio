@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  agentRules: false,
+  reactCompiler: true,
+  turbopack: {
+    root: process.cwd(),
+  },
   images: {
     remotePatterns: [
       {
@@ -11,11 +16,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'plus.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co',
+      },
     ],
-  },
-  experimental: {
-    // @ts-expect-error - Ignora o erro de tipo pois reactCompiler é uma feature nova
-    reactCompiler: true,
   },
 };
 

@@ -17,7 +17,7 @@ export function Personal() {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="h-full"
           >
@@ -71,7 +71,7 @@ export function Personal() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5 }}
               className="group border border-phosphor-green/15 bg-crt-panel/40 p-6 font-mono transition-colors hover:border-phosphor-green/40"
             >
@@ -96,7 +96,7 @@ export function Personal() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="border border-phosphor-green/15 bg-crt-panel/40 p-6 transition-colors hover:border-phosphor-amber/40"
               >
@@ -119,7 +119,7 @@ export function Personal() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="border border-phosphor-green/15 bg-crt-panel/40 p-6 transition-colors hover:border-phosphor-green/40"
               >
@@ -142,7 +142,7 @@ export function Personal() {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="group relative min-h-[300px] w-full flex-grow overflow-hidden border border-phosphor-green/15 shadow-2xl"
             >
@@ -151,10 +151,9 @@ export function Personal() {
               <Image
                 src={profileData.personalImage || ""}
                 alt="Gabriel Martielo"
-                width={0}
-                height={0}
-                sizes="100vw"
-                style={{ width: "100%", height: "100%" }}
+                fill
+                sizes="(max-width: 767px) 100vw, 50vw"
+                quality={74}
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 onError={(e) => {
                   e.currentTarget.style.display = "none";

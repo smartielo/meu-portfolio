@@ -3,22 +3,20 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useLenis } from "@/components/providers/LenisProvider";
 
 const SECTIONS = [
-  { id: "hero", label: "boot" },
-  { id: "skills", label: "skills" },
-  { id: "projects", label: "projects" },
-  { id: "achievements", label: "wins" },
-  { id: "about", label: "learning" },
-  { id: "personal", label: "human" },
-  { id: "contact", label: "contact" },
+  { id: "hero", label: "Início" },
+  { id: "skills", label: "Habilidades" },
+  { id: "projects", label: "Projetos" },
+  { id: "achievements", label: "Conquistas" },
+  { id: "about", label: "Estudos" },
+  { id: "personal", label: "Sobre" },
+  { id: "contact", label: "Contato" },
 ];
 
 export function SectionDock() {
   const pathname = usePathname();
   const [active, setActive] = useState("hero");
-  const lenis = useLenis();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,12 +45,11 @@ export function SectionDock() {
           onClick={() => {
             const el = document.getElementById(s.id);
             if (!el) return;
-            if (lenis) lenis.scrollTo(el, { offset: -72 });
-            else el.scrollIntoView({ behavior: "smooth" });
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
         >
           <span
-            className={`font-mono text-[10px] uppercase tracking-widest opacity-0 transition-opacity group-hover:opacity-100 ${
+            className={`text-[10px] font-semibold uppercase tracking-widest opacity-0 transition-opacity group-hover:opacity-100 ${
               active === s.id ? "text-phosphor-amber" : "text-phosphor-green/60"
             }`}
           >
@@ -61,7 +58,7 @@ export function SectionDock() {
           <span
             className={`h-2 w-2 rounded-full border transition-all ${
               active === s.id
-                ? "scale-125 border-phosphor-amber bg-phosphor-amber shadow-[0_0_8px_rgba(255,176,0,0.8)]"
+                ? "scale-125 border-phosphor-green bg-phosphor-green shadow-[0_0_12px_rgba(139,156,255,0.7)]"
                 : "border-phosphor-green/40 group-hover:border-phosphor-green"
             }`}
           />

@@ -33,8 +33,12 @@ export function ContributionGraph() {
         <div className="overflow-x-auto">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`https://ghchart.rshah.org/00ff9d/${username}`}
+            src={`https://ghchart.rshah.org/8b9cff/${username}`}
             alt={`Gráfico de contribuições de ${username} no GitHub`}
+            loading="lazy"
+            decoding="async"
+            width="900"
+            height="150"
             className="min-w-[640px]"
             onError={() => setFailed(true)}
           />

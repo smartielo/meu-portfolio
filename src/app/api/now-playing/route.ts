@@ -1,30 +1,63 @@
-// src/app/api/now-playing/route.ts
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-interface SpotifyTrackItem {
+type SpotifyFailureReason =
+  | "missing_env"
+  | "invalid_refresh_token"
+  | "token_request_failed"
+  | "playback_request_failed";
+
+interface SpotifyItem {
   name: string;
-  artists: { name: string }[];
-  album: { name: string; images: { url: string }[] };
-  external_urls: { spotify: string };
+  type?: "track" | "episode";
+  duration_ms?: number;
+  artists?: { name: string }[];
+  album?: { name: string; images: { url: string }[] };
+  images?: { url: string }[];
+  show?: { name: string; images?: { url: string }[] };
+  external_urls?: { spotify?: string };
 }
 
 interface SpotifyCurrentlyPlayingResponse {
   is_playing: boolean;
-  item: SpotifyTrackItem | null;
+  progress_ms?: number;
+  item: SpotifyItem | null;
 }
 
-async function getAccessToken(): Promise<string | null> {
+interface SpotifyTokenResponse {
+  access_token?: string;
+  expires_in?: number;
+  error?: string;
+}
+
+let cachedAccessToken: { token: string; expiresAt: number } | null = null;
+
+function failure(reason: SpotifyFailureReason, configured: boolean, status?: number) {
+  return NextResponse.json(
+    { configured, isPlaying: false, reason },
+    { status: status ?? 200, headers: { "Cache-Control": "no-store" } },
+  );
+}
+
+async function getAccessToken(): Promise<
+  | { ok: true; token: string }
+  | { ok: false; reason: SpotifyFailureReason }
+> {
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
   const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
 
-  if (!clientId || !clientSecret || !refreshToken) return null;
+  if (!clientId || !clientSecret || !refreshToken) {
+    return { ok: false, reason: "missing_env" };
+  }
+
+  if (cachedAccessToken && cachedAccessToken.expiresAt > Date.now()) {
+    return { ok: true, token: cachedAccessToken.token };
+  }
 
   const basic = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
-
-  const res = await fetch("https://accounts.spotify.com/api/token", {
+  const response = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -37,38 +70,86 @@ async function getAccessToken(): Promise<string | null> {
     cache: "no-store",
   });
 
-  if (!res.ok) return null;
-  const data = await res.json();
-  return data.access_token as string;
+  const data = (await response.json().catch(() => ({}))) as SpotifyTokenResponse;
+
+  if (!response.ok || !data.access_token) {
+    const reason = data.error === "invalid_grant" ? "invalid_refresh_token" : "token_request_failed";
+    console.error(`[spotify] token refresh failed: ${reason} (${response.status})`);
+    return { ok: false, reason };
+  }
+
+  cachedAccessToken = {
+    token: data.access_token,
+    expiresAt: Date.now() + Math.max((data.expires_in ?? 3600) - 60, 60) * 1000,
+  };
+
+  return { ok: true, token: data.access_token };
+}
+
+async function requestCurrentPlayback(token: string) {
+  return fetch("https://api.spotify.com/v1/me/player/currently-playing?additional_types=track,episode", {
+    headers: { Authorization: `Bearer ${token}` },
+    cache: "no-store",
+  });
 }
 
 export async function GET() {
-  const accessToken = await getAccessToken();
+  let tokenResult = await getAccessToken();
 
-  if (!accessToken) {
-    return NextResponse.json({ configured: false, isPlaying: false });
+  if (!tokenResult.ok) {
+    return failure(tokenResult.reason, tokenResult.reason !== "missing_env");
   }
 
-  const res = await fetch("https://api.spotify.com/v1/me/player/currently-playing", {
-    headers: { Authorization: `Bearer ${accessToken}` },
-    cache: "no-store",
-  });
+  let response = await requestCurrentPlayback(tokenResult.token);
 
-  if (res.status === 204 || !res.ok) {
-    return NextResponse.json({ configured: true, isPlaying: false });
+  if (response.status === 401) {
+    cachedAccessToken = null;
+    tokenResult = await getAccessToken();
+    if (!tokenResult.ok) return failure(tokenResult.reason, true);
+    response = await requestCurrentPlayback(tokenResult.token);
   }
 
-  const song: SpotifyCurrentlyPlayingResponse = await res.json();
-
-  if (!song?.item) {
-    return NextResponse.json({ configured: true, isPlaying: false });
+  if (response.status === 204) {
+    return NextResponse.json(
+      { configured: true, isPlaying: false },
+      { headers: { "Cache-Control": "no-store" } },
+    );
   }
 
-  return NextResponse.json({
-    configured: true,
-    isPlaying: song.is_playing,
-    title: song.item.name,
-    artist: song.item.artists.map((a) => a.name).join(", "),
-    songUrl: song.item.external_urls.spotify,
-  });
+  if (!response.ok) {
+    console.error(`[spotify] playback request failed (${response.status})`);
+    return failure("playback_request_failed", true);
+  }
+
+  const playback = (await response.json()) as SpotifyCurrentlyPlayingResponse;
+  if (!playback.item) {
+    return NextResponse.json(
+      { configured: true, isPlaying: false },
+      { headers: { "Cache-Control": "no-store" } },
+    );
+  }
+
+  const artist = playback.item.artists?.map(({ name }) => name).join(", ")
+    || playback.item.show?.name
+    || "Spotify";
+  const images = playback.item.album?.images
+    || playback.item.images
+    || playback.item.show?.images
+    || [];
+
+  return NextResponse.json(
+    {
+      configured: true,
+      isPlaying: playback.is_playing,
+      title: playback.item.name,
+      artist,
+      songUrl: playback.item.external_urls?.spotify,
+      contentType: playback.item.type ?? "track",
+      albumName: playback.item.album?.name || playback.item.show?.name,
+      albumImageUrl: images[1]?.url || images[0]?.url,
+      progressMs: playback.progress_ms ?? 0,
+      durationMs: playback.item.duration_ms ?? 0,
+    },
+    { headers: { "Cache-Control": "no-store" } },
+  );
 }

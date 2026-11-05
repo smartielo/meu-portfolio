@@ -28,12 +28,12 @@ export function Achievements() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="mb-12 font-mono"
+          className="mb-12"
         >
-          <p className="mb-2 text-phosphor-green/60">{"> "}ls ~/gabriel/achievements</p>
-          <h2 className="text-3xl font-bold text-phosphor-green md:text-4xl">Conquistas</h2>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-phosphor-green">Trajetória</p>
+          <h2 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">Conquistas</h2>
           <p className="mt-2 max-w-xl text-foreground/70">
             Reconhecimentos e marcos da minha trajetória em tecnologia.
           </p>
@@ -54,14 +54,14 @@ export function Achievements() {
               accent="amber"
             >
               <div className="flex flex-col gap-6 md:flex-row md:items-center">
-                <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded border border-phosphor-amber/20 bg-black/30">
+                <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
                   {getIssuerIcon(achievement.issuer)}
                 </div>
                 <div className="flex-grow font-mono">
                   <div className="mb-1 flex flex-wrap items-center gap-3">
                     <h3 className="text-xl font-bold text-phosphor-green">{achievement.title}</h3>
-                    <span className="border border-phosphor-amber/30 bg-phosphor-amber/10 px-2 py-0.5 text-xs text-phosphor-amber">
-                      [ {achievement.issuer} ]
+                    <span className="rounded-full border border-phosphor-amber/25 bg-phosphor-amber/10 px-3 py-1 text-xs text-phosphor-amber">
+                      {achievement.issuer}
                     </span>
                   </div>
                   <p className="mb-3 text-xs text-foreground/50">{achievement.date}</p>
@@ -73,7 +73,7 @@ export function Achievements() {
                       rel="noopener noreferrer"
                       className="mt-4 inline-flex items-center gap-2 text-sm text-phosphor-green transition-colors hover:text-phosphor-amber"
                     >
-                      [ view credential ] <FiExternalLink />
+                      Ver credencial <FiExternalLink />
                     </a>
                   )}
                 </div>
@@ -91,7 +91,7 @@ export function Achievements() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="border border-phosphor-green/15 bg-crt-panel/40 p-5 transition-colors hover:border-phosphor-green/40"
+              className="rounded-3xl border border-white/8 bg-white/[0.035] p-6 transition-all hover:-translate-y-1 hover:border-phosphor-green/30"
               >
                 <div className="mb-3 flex items-center gap-3">
                   {getIssuerIcon(achievement.issuer)}
@@ -109,7 +109,7 @@ export function Achievements() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex items-center justify-center border border-dashed border-phosphor-green/15 p-8 text-center font-mono text-sm text-foreground/40"
           >
-            [ mais conquistas em breve ]
+            Mais conquistas em breve.
           </motion.div>
         )}
       </div>

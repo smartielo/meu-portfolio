@@ -1,6 +1,3 @@
-import { DiMysql } from "react-icons/di";
-import { Layout, Database, LineChart, Smartphone } from "lucide-react";
-
 // src/data/profile.ts
 export interface Project {
   title: string;

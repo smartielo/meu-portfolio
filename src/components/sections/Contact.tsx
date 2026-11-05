@@ -16,11 +16,11 @@ export function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
           className="mx-auto max-w-4xl"
         >
-          <TerminalWindow path="~/gabriel/contact" title="send --message" className="text-center">
-            <h2 className="mb-4 font-mono text-3xl font-bold text-phosphor-green md:text-4xl">
+          <TerminalWindow path="contact" title="Vamos conversar" className="text-center">
+            <h2 className="mb-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">
               Vamos trabalhar juntos?
             </h2>
             <p className="mb-8 text-lg text-foreground/70">
@@ -28,7 +28,7 @@ export function Contact() {
               Se você tem uma vaga ou um projeto em mente, mande um oi!
             </p>
 
-            <div className="mx-auto grid max-w-2xl gap-4 font-mono md:grid-cols-2">
+            <div className="mx-auto grid max-w-2xl gap-4 md:grid-cols-2">
               {/* Card Email */}
               <a
                 href={`mailto:${profileData.email}`}

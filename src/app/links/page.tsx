@@ -1,105 +1,54 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Globe, Camera, Instagram } from "lucide-react";
+import { ArrowUpRight, Camera, Github, Globe, Instagram, Linkedin } from "lucide-react";
 import { HudGridBackground } from "@/components/ui/HudGridBackground";
-import { TerminalWindow } from "@/components/ui/TerminalWindow";
 
 const links = [
-  {
-    title: "Portfólio Oficial",
-    url: "/",
-    icon: Globe,
-    label: "open_portfolio",
-  },
-  {
-    title: "VSCO",
-    url: "https://vsco.co/gbehindthescenes",
-    icon: Camera,
-    label: "open_vsco",
-  },
-  {
-    title: "LinkedIn",
-    url: "https://linkedin.com/in/gabrielmartielo",
-    icon: Linkedin,
-    label: "open_linkedin",
-  },
-  {
-    title: "GitHub",
-    url: "https://github.com/smartielo",
-    icon: Github,
-    label: "open_github",
-  },
-  {
-    title: "Instagram",
-    url: "https://instagram.com/gmartielos",
-    icon: Instagram,
-    label: "open_instagram",
-  },
+  { title: "Portfólio", description: "Projetos, habilidades e trajetória", url: "/", icon: Globe },
+  { title: "LinkedIn", description: "Experiência e conexões profissionais", url: "https://linkedin.com/in/gabrielmartielo", icon: Linkedin },
+  { title: "GitHub", description: "Código, estudos e projetos abertos", url: "https://github.com/smartielo", icon: Github },
+  { title: "VSCO", description: "Fotografia e momentos", url: "https://vsco.co/gbehindthescenes", icon: Camera },
+  { title: "Instagram", description: "Bastidores e vida pessoal", url: "https://instagram.com/gmartielos", icon: Instagram },
 ];
 
 export default function LinksPage() {
   return (
-    <main className="relative min-h-screen w-full flex items-center justify-center p-4 overflow-hidden bg-background text-foreground font-mono">
+    <main className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-background px-4 py-12 text-foreground">
       <HudGridBackground />
 
-      <div className="z-10 w-full max-w-lg">
-        <TerminalWindow path="~/links" title="connect_socials" className="mx-auto">
-          <div className="flex flex-col items-center text-center gap-6">
-            
-            {/* Profile Picture */}
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-phosphor-green/30 rounded-full blur group-hover:blur-md transition-all duration-500" />
-              <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-phosphor-green shadow-[0_0_15px_rgba(0,255,0,0.2)]">
-                <Image
-                  src="/projects/perfillinks.jpg"
-                  alt="Gabriel Martielo"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
+      <div className="relative z-10 w-full max-w-xl">
+        <div className="mb-8 text-center">
+          <div className="relative mx-auto mb-5 h-24 w-24">
+            <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-phosphor-green/35 to-phosphor-amber/30 blur-xl" />
+            <div className="relative h-full w-full overflow-hidden rounded-full border border-white/15 bg-crt-panel p-1 shadow-2xl">
+              <Image src="/projects/perfillinks.jpg" alt="Gabriel Martielo" fill sizes="96px" quality={80} className="rounded-full object-cover p-1" priority />
             </div>
-
-            {/* Header */}
-            <div className="space-y-1">
-              <h1 className="text-xl font-bold text-phosphor-green tracking-tighter">
-                GABRIEL MARTIELO
-              </h1>
-              <p className="text-phosphor-amber text-xs opacity-80">
-                Full Stack Dev | Computer Science Student
-              </p>
-            </div>
-
-            {/* Links Grid */}
-            <div className="w-full grid gap-3 mt-4">
-              {links.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.url}
-                  target={link.url.startsWith("/") ? "_self" : "_blank"}
-                  className="group relative flex items-center gap-3 p-3 bg-phosphor-green/5 border border-phosphor-green/20 hover:border-phosphor-amber/50 hover:bg-phosphor-green/10 transition-all duration-200"
-                >
-                  <div className="text-phosphor-green group-hover:text-phosphor-amber transition-colors">
-                    <link.icon size={18} />
-                  </div>
-                  
-                  <span className="text-sm text-phosphor-green/80 group-hover:text-phosphor-amber transition-colors">
-                    {link.title}
-                  </span>
-
-                  <span className="ml-auto text-[10px] text-phosphor-green/40 group-hover:text-phosphor-amber/60 font-mono">
-                    [{link.label}]
-                  </span>
-                </Link>
-              ))}
-            </div>
-
-            {/* Footer */}
-            <footer className="mt-6 pt-4 border-t border-phosphor-green/10 w-full text-phosphor-green/30 text-[10px] text-center">
-              <p>© 2026 GABRIEL MARTIELO // SYSTEM_READY</p>
-            </footer>
           </div>
-        </TerminalWindow>
+          <h1 className="text-3xl font-semibold tracking-tight text-white">Gabriel Martielo</h1>
+          <p className="mt-2 text-sm text-foreground/55">Full Stack Developer · Computer Science</p>
+        </div>
+
+        <div className="space-y-3">
+          {links.map((link) => (
+            <Link
+              key={link.title}
+              href={link.url}
+              target={link.url.startsWith("/") ? "_self" : "_blank"}
+              className="group flex items-center gap-4 rounded-2xl border border-white/8 bg-white/[0.045] p-4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-phosphor-green/30 hover:bg-white/[0.075]"
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/8 bg-white/5 text-phosphor-green transition group-hover:bg-phosphor-green group-hover:text-background">
+                <link.icon size={19} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-white">{link.title}</p>
+                <p className="truncate text-xs text-foreground/45">{link.description}</p>
+              </div>
+              <ArrowUpRight size={18} className="text-foreground/30 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-phosphor-amber" />
+            </Link>
+          ))}
+        </div>
+
+        <p className="mt-8 text-center text-xs text-foreground/25">© 2026 Gabriel Martielo</p>
       </div>
     </main>
   );

@@ -3,7 +3,6 @@
 
 import { Command } from "cmdk";
 import { useCommandPalette } from "@/components/providers/CommandPaletteProvider";
-import { useLenis } from "@/components/providers/LenisProvider";
 import { profileData } from "@/data/profile";
 
 const SECTIONS = [
@@ -18,14 +17,12 @@ const SECTIONS = [
 
 export function CommandPalette() {
   const { open, setOpen } = useCommandPalette();
-  const lenis = useLenis();
 
   function goTo(id: string) {
     setOpen(false);
     const el = document.getElementById(id);
     if (!el) return;
-    if (lenis) lenis.scrollTo(el, { offset: -72 });
-    else el.scrollIntoView({ behavior: "smooth" });
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   return (

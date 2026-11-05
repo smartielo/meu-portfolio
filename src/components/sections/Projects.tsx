@@ -24,13 +24,13 @@ export function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="mb-12 flex flex-col items-end justify-between gap-4 font-mono md:flex-row"
+          className="mb-12 flex flex-col items-end justify-between gap-4 md:flex-row"
         >
           <div>
-            <p className="mb-2 text-phosphor-green/60">{"> "}ls ~/gabriel/projects</p>
-            <h2 className="text-3xl font-bold text-phosphor-green">Projetos em Destaque</h2>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-phosphor-green">Trabalhos selecionados</p>
+            <h2 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">Projetos em destaque</h2>
             <p className="mt-2 text-foreground/70">
               Uma coleção dos meus melhores trabalhos em desenvolvimento e dados.
             </p>
@@ -58,7 +58,7 @@ export function Projects() {
             spaceBetween={30}
             slidesPerView={1}
             pagination={{ clickable: true, dynamicBullets: true }}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            autoplay={{ delay: 6500, disableOnInteraction: true, pauseOnMouseEnter: true }}
             breakpoints={{
               640: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
